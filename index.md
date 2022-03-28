@@ -22,14 +22,14 @@
 
 ### Tools and Programming Languages
 <div>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/haskell/haskell-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/c/c-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg?sanitize=true" width="40" height="40"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original.svg?sanitize=true" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408144-d4f0e8ba-ec52-4788-a61a-6a0230d7835e.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408287-192edc24-3448-429c-af11-4cbccf17725c.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408353-834eed75-6c49-4501-b599-e08f345ecf8c.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408412-2450b1a5-bafc-4828-88cd-9d4f4183e48b.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408519-56bc726e-fdfb-4980-a085-29b4185ca576.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408599-4e2ff141-1f73-4995-bce1-39de663643da.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408709-32211fb7-c24b-4483-bbfa-3da6b0d1b9d3.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408810-d24ce423-7bda-448e-9f0e-64d880c080cc.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408867-f6beb34f-12db-4af7-a7f7-c4bb3e1b58d5.png" width="40" height="40"/>
+  <img src="https://user-images.githubusercontent.com/46201716/160408975-22a9a1ea-36f5-4140-9238-6c0f0490f95d.png" width="40" height="40"/>
 </div>
