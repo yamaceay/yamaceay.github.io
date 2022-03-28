@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+<img width="205" alt="Bildschirmfoto 2022-03-28 um 11 18 21" src="https://user-images.githubusercontent.com/46201716/160379172-04ed0ab8-467a-4016-9eac-538b4354db28.png" alt="Logo">
 
-You can use the [editor on GitHub](https://github.com/yamaceay/yamaceay.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+<div id="badges">
+  <img src="https://img.shields.io/badge/Github-444444?style=for-the-badge&link=https://www.github.com/yamaceay" alt="GitHub Badge"/>
+  <img src="https://img.shields.io/badge/Medium-black?style=for-the-badge&link=https://medium.com/@yamaceay" alt="Medium Badge"/>
+  <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&link=https://www.linkedin.com/in/yamaceay" alt="LinkedIn Badge"/>
+  <img src="https://img.shields.io/badge/Kaggle-20beff?style=for-the-badge&link=https://www.kaggle.com/yamaerenay" alt="Kaggle Badge"/>
+</div>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Hi there, I am Yamac Eren Ay and this is my personal website.
 
-### Markdown
+<ul>
+  <li>🏫 As a 4th semester student, I am pursuing my Bachelors in Computer Science at TU Berlin. </li>
+  <li>💻 Currently, I am looking for a part-time Software Engineering working student job. </li>
+  <li>🌐 I have been exploring the basics of Web Dev (1 yr) and Machine Learning (2 yrs). </li>
+  <li>🖋 I love to write non-fiction articles and ask questions about topics related to Computer Science. </li>
+  <li>📱 Feel free to contact me on my social media accounts | Kontaktiere mich gerne auf meinen Social-Media-Konten </li>
+</ul>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yamaceay/yamaceay.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Programming Languages and Tools
+<div>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/haskell/haskell-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/c/c-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original.svg" width="40" height="40"/>
+</div>
