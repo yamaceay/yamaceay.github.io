@@ -2,10 +2,10 @@
 
 ### How You Can Reach Me
 <div id="badges">
-  <img src="https://img.shields.io/badge/Github-444444?style=for-the-badge&link=https://www.github.com/yamaceay" alt="GitHub Badge"/>
-  <img src="https://img.shields.io/badge/Medium-black?style=for-the-badge&link=https://medium.com/@yamaceay" alt="Medium Badge"/>
-  <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&link=https://www.linkedin.com/in/yamaceay" alt="LinkedIn Badge"/>
-  <img src="https://img.shields.io/badge/Kaggle-20beff?style=for-the-badge&link=https://www.kaggle.com/yamaerenay" alt="Kaggle Badge"/>
+  <a href="https://www.github.com/yamaceay"> <img src="https://img.shields.io/badge/Github-444444?style=for-the-badge" alt="GitHub Badge"/> </a>
+  <a href="https://medium.com/@yamaceay"> <img src="https://img.shields.io/badge/Medium-black?style=for-the-badge" alt="Medium Badge"/> </a>
+  <a href="https://www.linkedin.com/in/yamaceay"> <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge" alt="LinkedIn Badge"/> </a>
+  <a href="https://www.kaggle.com/yamaerenay"> <img src="https://img.shields.io/badge/Kaggle-20beff?style=for-the-badge" alt="Kaggle Badge"/> </a>
 </div>
 
 
@@ -17,8 +17,8 @@
 * 🤝 If your are looking for a team member for your Software Engineering project, feel free to contact me!
 
 ### What I Have Made So Far
-* <img src="https://img.shields.io/badge/NQDM-Progress%20Bar-brightgreen?link=https://github.com/yamaceay/nqdm#readme" alt="NQDM - Progress Bar"/>
-* <img src="https://img.shields.io/badge/Reflag-Intelligent%20Flag%20Programming-red?link=https://github.com/yamaceay/reflag#readme" alt="Reflag - Intelligent Flags"/>
+* <a href="https://github.com/yamaceay/nqdm#readme"> <img src="https://img.shields.io/badge/NQDM-Progress%20Bar-brightgreen" alt="NQDM - Progress Bar"/> </a>
+* <a href="https://github.com/yamaceay/reflag#readme"> <img src="https://img.shields.io/badge/Reflag-Intelligent%20Flag%20Programming-red" alt="Reflag - Intelligent Flags"/> </a>
 
 ### Tools and Programming Languages
 <div>
