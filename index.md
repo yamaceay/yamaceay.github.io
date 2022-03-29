@@ -16,11 +16,11 @@
 * 🖋 I love to ask questions and write non-fiction articles about topics related to Computer Science. 
 * 🤝 If your are looking for a team member for your Software Engineering project, feel free to contact me!
 
-### What I Have Made So Far
+### What I Have Made So Far On My Own
 * <a href="https://github.com/yamaceay/nqdm#readme"> <img src="https://img.shields.io/badge/NQDM-Progress%20Bar-brightgreen" alt="NQDM - Progress Bar"/> </a>
-* <a href="https://github.com/yamaceay/reflag#readme"> <img src="https://img.shields.io/badge/Reflag-Intelligent%20Flag%20Programming-red" alt="Reflag - Intelligent Flags"/> </a>
+* <a href="https://github.com/yamaceay/reflag#readme"> <img src="https://img.shields.io/badge/Reflag-Intelligent%20Flags-red" alt="Reflag - Intelligent Flags"/> </a>
 
-### Tools and Programming Languages
+### What I Can Code
 <div>
   <img src="https://user-images.githubusercontent.com/46201716/160408144-d4f0e8ba-ec52-4788-a61a-6a0230d7835e.png" width="40" height="40"/>
   <img src="https://user-images.githubusercontent.com/46201716/160408287-192edc24-3448-429c-af11-4cbccf17725c.png" width="40" height="40"/>
