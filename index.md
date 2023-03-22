@@ -10,11 +10,11 @@
 
 
 ### What You May Know About Me
-* 🏫 As a 4th semester student, I am pursuing my Bachelors in Computer Science at TU Berlin. 
-* 💻 Currently, I am looking for a part-time Software Engineering working student job. 
-* 🌐 I have been exploring the basics of Machine Learning (2 yrs), Database Management (2+ yrs) and Web Dev (1 yr).
+* 🏫 As a 6th semester student, I am pursuing my Bachelors in Computer Science at TU Berlin. 
+* 💻 Currently, I am working part-time as a working student in [Scandio](https://www.scandio.de). 
+* 🌐 I have been exploring the basics of Machine Learning (2+ yrs), Database Management (2+ yrs) and Web Dev (1 yr).
 * 🖋 I love to ask questions and write non-fiction articles about topics related to Computer Science. 
-* 🤝 If your are looking for a team member for your Software Engineering project, feel free to contact me!
+* 🤝 If you are looking for a team member for your Software Engineering project, feel free to contact me!
 
 ### What I Have Made So Far On My Own
 * <a href="https://github.com/yamaceay/nqdm#readme"> <img src="https://img.shields.io/badge/NQDM-Progress%20Bar-brightgreen" alt="NQDM - Progress Bar"/> </a>
