@@ -1,4 +1,6 @@
-### Contact
+### Yamac Eren Ay
+
+#### How You Can Reach Me Out
 <div id="badges">
   <a href="https://www.github.com/yamaceay"> <img src="https://img.shields.io/badge/Github-444444?style=for-the-badge" alt="GitHub Badge"/> </a>
   <a href="https://medium.com/@yamaceay"> <img src="https://img.shields.io/badge/Medium-black?style=for-the-badge" alt="Medium Badge"/> </a>
