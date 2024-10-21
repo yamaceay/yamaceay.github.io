@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yamac Eren Ay</title>
+  <meta name="description" content="Yamac Eren Ay — MSc CS at TU Berlin. Computer scientist and software developer with a focus on AI and machine learning." />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #0d1117;
+      --bg2:      #161b22;
+      --bg3:      #21262d;
+      --border:   #30363d;
+      --text:     #e6edf3;
+      --muted:    #8b949e;
+      --accent:   #58a6ff;
+      --accent2:  #3fb950;
+      --accent3:  #d2a8ff;
+      --accent4:  #ffa657;
+      --shadow:   0 8px 32px rgba(0,0,0,.45);
+      --radius:   12px;
+      --font:     'Segoe UI', system-ui, -apple-system, sans-serif;
+      --mono:     'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+    a:hover { opacity: .75; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .85rem 2rem;
+      background: rgba(13,17,23,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: .95rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: .03em;
+    }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .nav-burger span { width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: .3s; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(88,166,255,.08) 0%, transparent 65%),
+                  radial-gradient(ellipse at 80% 80%, rgba(63,185,80,.06) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: .18;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 720px; }
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--mono); font-size: .78rem;
+      color: var(--accent2); border: 1px solid var(--accent2);
+      padding: .3rem .9rem; border-radius: 99px;
+      margin-bottom: 1.5rem; letter-spacing: .05em;
+      animation: fadeDown .7s ease both;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700; letter-spacing: -.02em;
+      line-height: 1.1; margin-bottom: .7rem;
+      animation: fadeDown .7s .1s ease both;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-typewriter {
+      font-family: var(--mono);
+      font-size: clamp(.95rem, 2.5vw, 1.15rem);
+      color: var(--muted); min-height: 1.8em;
+      margin-bottom: 1.8rem;
+      animation: fadeDown .7s .2s ease both;
+    }
+    .hero-typewriter .cursor {
+      display: inline-block; width: 2px; height: 1em;
+      background: var(--accent); margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+    }
+    .hero-desc {
+      color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto 2.2rem;
+      animation: fadeDown .7s .3s ease both;
+    }
+    .hero-socials {
+      display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeDown .7s .4s ease both;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .55rem 1.1rem; border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2); color: var(--text);
+      font-size: .85rem; font-weight: 500;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .social-btn:hover { border-color: var(--accent); background: var(--bg3); transform: translateY(-2px); opacity: 1; }
+    .social-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: var(--muted); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      animation: fadeDown .7s .6s ease both;
+    }
+    .hero-scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg);
+      animation: bounce 1.5s ease infinite;
+    }
+
+    /* ── Section Layout ── */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono); font-size: .78rem; color: var(--accent);
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700; letter-spacing: -.02em;
+      margin-bottom: 2.5rem;
+    }
+    .section-title span { color: var(--muted); font-weight: 400; }
+
+    /* ── Reveal animation ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── About ── */
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--text); }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem 1.4rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .stat-num { font-size: 1.8rem; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+    .stat-label { font-size: .82rem; color: var(--muted); margin-top: .2rem; }
+
+    /* ── Research ── */
+    #research {}
+    .research-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem 2rem;
+      margin-bottom: 1.2rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .research-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--accent);
+      border-radius: 3px 0 0 3px;
+    }
+    .research-card:nth-child(2)::before { background: var(--accent2); }
+    .research-card:nth-child(3)::before { background: var(--accent3); }
+    .research-card:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: var(--shadow); }
+    .research-title { font-size: 1rem; font-weight: 600; margin-bottom: .4rem; }
+    .research-meta { font-family: var(--mono); font-size: .78rem; color: var(--muted); margin-bottom: .8rem; }
+    .research-desc { color: var(--muted); font-size: .9rem; }
+    .research-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .tag {
+      font-size: .73rem; font-family: var(--mono);
+      padding: .2rem .65rem; border-radius: 99px;
+      border: 1px solid; font-weight: 500;
+    }
+    .tag-blue  { color: var(--accent);  border-color: rgba(88,166,255,.35);  background: rgba(88,166,255,.08); }
+    .tag-green { color: var(--accent2); border-color: rgba(63,185,80,.35);   background: rgba(63,185,80,.08); }
+    .tag-purple{ color: var(--accent3); border-color: rgba(210,168,255,.35); background: rgba(210,168,255,.08); }
+    .tag-orange{ color: var(--accent4); border-color: rgba(255,166,87,.35);  background: rgba(255,166,87,.08); }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 6px; bottom: 0;
+      width: 2px; background: var(--border); border-radius: 2px;
+    }
+    .tl-item { position: relative; margin-bottom: 2.2rem; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -2rem; top: 4px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg);
+      transform: translateX(-5px);
+    }
+    .tl-dot.green  { background: var(--accent2); }
+    .tl-dot.purple { background: var(--accent3); }
+    .tl-period { font-family: var(--mono); font-size: .75rem; color: var(--muted); margin-bottom: .3rem; }
+    .tl-role   { font-size: 1rem; font-weight: 600; margin-bottom: .15rem; }
+    .tl-place  { font-size: .88rem; color: var(--accent); margin-bottom: .5rem; }
+    .tl-desc   { font-size: .88rem; color: var(--muted); }
+
+    /* ── Projects ── */
+    #projects { background: var(--bg2); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+    .project-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem 1.5rem;
+      display: flex; flex-direction: column;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .project-icon { font-size: 1.6rem; margin-bottom: .8rem; }
+    .project-name { font-size: .97rem; font-weight: 600; margin-bottom: .5rem; }
+    .project-desc { font-size: .83rem; color: var(--muted); flex: 1; margin-bottom: 1rem; }
+    .project-footer { display: flex; align-items: center; justify-content: space-between; }
+    .project-lang { font-family: var(--mono); font-size: .73rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .lang-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .project-link { font-size: .78rem; color: var(--accent); font-weight: 500; }
+
+    /* ── Skills ── */
+    #skills {}
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.2rem; }
+    .skill-group {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.3rem 1.4rem;
+      transition: border-color .2s;
+    }
+    .skill-group:hover { border-color: var(--border); }
+    .skill-group-title { font-size: .78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .9rem; }
+    .skill-list { display: flex; flex-direction: column; gap: .35rem; }
+    .skill-item { font-size: .85rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
+    .skill-item::before { content: '▸'; color: var(--accent); font-size: .7rem; }
+
+    /* ── Blog ── */
+    #blog { background: var(--bg2); }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+    .blog-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem 1.5rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .blog-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .blog-tag { font-family: var(--mono); font-size: .72rem; color: var(--accent2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+    .blog-title { font-size: .93rem; font-weight: 600; margin-bottom: .5rem; color: var(--text); }
+    .blog-title:hover { color: var(--accent); }
+    .blog-excerpt { font-size: .82rem; color: var(--muted); }
+
+    /* ── Contact ── */
+    #contact {}
+    .contact-box {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 3rem;
+      text-align: center; max-width: 560px; margin: 0 auto;
+    }
+    .contact-box h3 { font-size: 1.3rem; margin-bottom: .6rem; }
+    .contact-box p { color: var(--muted); margin-bottom: 2rem; font-size: .93rem; }
+    .contact-email {
+      display: inline-block;
+      font-family: var(--mono); font-size: 1rem;
+      color: var(--accent); border: 1px solid var(--accent);
+      padding: .7rem 1.8rem; border-radius: 8px;
+      transition: background .2s;
+    }
+    .contact-email:hover { background: rgba(88,166,255,.1); opacity: 1; }
+    .contact-socials { display: flex; justify-content: center; gap: .8rem; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: var(--mono); font-size: .78rem; color: var(--muted);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; } 50% { opacity: 0; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ── Grades ── */
+    #grades { background: var(--bg2); }
+    .grade-system-note { font-size: .82rem; color: var(--muted); margin-bottom: 1.8rem; font-family: var(--mono); }
+    .grade-tabs { display: flex; gap: .6rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
+    .grade-tab {
+      font-family: var(--mono); font-size: .8rem; font-weight: 600;
+      padding: .5rem 1.2rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg3);
+      color: var(--muted); cursor: pointer; transition: all .2s;
+    }
+    .grade-tab.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .grade-tab:hover:not(.active) { border-color: var(--accent); color: var(--text); }
+    .grade-chart { display: flex; flex-direction: column; gap: .55rem; }
+    .grade-row { display: grid; grid-template-columns: 220px 1fr 52px; align-items: center; gap: 1rem; }
+    .grade-name { font-size: .8rem; color: var(--muted); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .grade-bar-wrap { height: 22px; background: var(--bg3); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+    .grade-bar { height: 100%; border-radius: 4px; transition: width .9s cubic-bezier(.4,0,.2,1); }
+    .grade-val { font-family: var(--mono); font-size: .78rem; color: var(--muted); text-align: right; }
+    .grade-divider { height: 1px; background: var(--border); margin: .4rem 0; opacity: .5; }
+    .grade-legend { display: flex; gap: 1.4rem; flex-wrap: wrap; margin-top: 1.4rem; }
+    .gleg { display: flex; align-items: center; gap: .45rem; font-size: .76rem; color: var(--muted); font-family: var(--mono); }
+    .gleg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    @media (max-width: 600px) {
+      .grade-row { grid-template-columns: 130px 1fr 40px; gap: .5rem; }
+      .grade-name { font-size: .72rem; }
+    }
+
+    /* ── Photos ── */
+    .hero-avatar {
+      width: 120px; height: 160px; border-radius: 50%;
+      border: 3px solid var(--accent);
+      object-fit: cover; object-position: center 15%;
+      display: block; margin: 0 auto 1.8rem;
+      animation: fadeDown .7s ease both;
+      box-shadow: 0 0 0 7px rgba(88,166,255,.12), var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .hero-avatar:hover { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(88,166,255,.18), var(--shadow); }
+    .about-right { display: flex; flex-direction: column; gap: 1rem; }
+    .about-photo {
+      width: 100%; border-radius: var(--radius);
+      object-fit: cover; object-position: center 20%;
+      border: 1px solid var(--border);
+      max-height: 39vh; display: block;
+      transition: transform .3s, border-color .3s;
+    }
+    .about-photo:hover { transform: scale(1.015); border-color: var(--accent); }
+    .beyond-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 3rem; }
+    .beyond-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); position: relative;
+      aspect-ratio: 4/3;
+      transition: border-color .25s, transform .25s;
+    }
+    .beyond-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .beyond-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      filter: grayscale(15%) brightness(.92);
+      transition: filter .4s, transform .4s;
+    }
+    .beyond-card:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.04); }
+    .beyond-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: .6rem 1rem;
+      background: linear-gradient(transparent, rgba(13,17,23,.85));
+      font-size: .78rem; color: var(--text); font-family: var(--mono);
+    }
+    @media (max-width: 500px) { .beyond-strip { grid-template-columns: 1fr; } }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .nav-burger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .contact-box { padding: 2rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav id="navbar">
+  <span class="nav-logo">yamaceay<span style="color:var(--muted)">.</span>github<span style="color:var(--muted)">.</span>io</span>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#grades">Grades</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="cv.html">CV</a></li>
+  </ul>
+  <div class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <img src="photo_main.jpg" alt="Yamaç Eren Ay" class="hero-avatar" />
+    <div class="hero-badge">&#x1F4CD; Berlin, Germany</div>
+    <h1 class="hero-name">Yamaç Eren <span>Ay</span></h1>
+    <div class="hero-typewriter">
+      <span id="typewriter"></span><span class="cursor"></span>
+    </div>
+    <p class="hero-desc">
+      Software developer, studying Computer Science at TU Berlin with a strong AI focus,
+      building real-world systems that are efficient, private, and useful. Working out 
+      and playing guitar — only while waiting for the Claude limit to reset.
+    </p>
+    <div class="hero-socials">
+      <a href="https://linkedin.com/in/yamaceay" class="social-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/yamaceay" class="social-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a href="https://medium.com/@yamaceay" class="social-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+        Medium
+      </a>
+      <a href="https://kaggle.com/yamaerenay" class="social-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.336z"/></svg>
+        Kaggle
+      </a>
+      <a href="https://www.instagram.com/yamaceay" class="social-btn" target="_blank">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg>
+        Instagram
+      </a>
+    </div>
+    <div style="margin-top:1.4rem; animation: fadeDown .7s .45s ease both;">
+      <a href="cv.html" class="social-btn" style="border-color:var(--accent); color:var(--accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>
+        View Full CV
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+  <div class="container">
+    <p class="section-label reveal">// about me</p>
+    <h2 class="section-title reveal">Who I Am <span>& What I Do</span></h2>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I'm <strong>Yamaç</strong>, a 24-year-old MSc Computer Science student at <strong>TU Berlin</strong>, originally from Bursa, Türkiye. I grew up between cultures — earning my Abitur at Istanbul Erkek Lisesi before moving to Berlin in 2020.</p>
+        <p>My research sits at the intersection of <strong>privacy-preserving machine learning</strong>, <strong>small language models</strong>, and <strong>agentic systems</strong>. I'm drawn to the elegant math behind ML, and I believe the most impactful AI is small, auditable, and private.</p>
+        <p>Alongside my studies, I've worked as a software engineering working student — two years at <strong>HiQ Germany</strong> on backend and DevOps, and two years at <strong>SAP</strong> building AI infrastructure at scale. I also write on Medium, contribute to open source, and compete on Kaggle.</p>
+      </div>
+      <div class="about-right">
+      <img src="photo_about.jpg" alt="Yamaç in Berlin" class="about-photo" />
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">4yr</div>
+          <div class="stat-label">Industry experience in software & AI</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-label">h-index</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Cities called home — Bursa, Istanbul, Berlin</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Languages spoken</div>
+        </div>
+      </div>
+      </div><!-- /.about-right -->
+    </div>
+  </div>
+</section>
+
+<!-- ── Experience ── -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label reveal">// experience</p>
+    <h2 class="section-title reveal">Where I've <span>Worked</span></h2>
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-period">10/2024 – 09/2026 &nbsp;·&nbsp; Potsdam, Germany</div>
+        <div class="tl-role">Working Student Software Developer</div>
+        <div class="tl-place">SAP AI Core, SAP Business AI</div>
+        <div class="tl-desc">AI runtime infrastructure for SAP's global customers. 
+          Building and maintaining lifecycle management for AI assets within SAP BTP. 
+          Skills: Python, Go, TypeScript, Edge AI, LLMs, AI Agents, Kubernetes, Crossplane.</div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot green"></div>
+        <div class="tl-period">02/2024 – 09/2024 &nbsp;·&nbsp; Potsdam, Germany</div>
+        <div class="tl-role">Working Student Cloud-Native Developer</div>
+        <div class="tl-place">SAP Master Data Integration</div>
+        <div class="tl-desc">Master data synchronization across SAP solutions. 
+          Skills: LangChain, Docker, Kubernetes, ReasonML, TypeScript, Jenkins.</div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot purple"></div>
+        <div class="tl-period">06/2022 – 01/2024 &nbsp;·&nbsp; Berlin, Germany</div>
+        <div class="tl-role">Working Student Software Engineer / IT Consultant</div>
+        <div class="tl-place">HiQ Germany (formerly Scandio GmbH)</div>
+        <div class="tl-desc">Digitalization of products and processes. 
+          Full-stack and backend development
+          Skills: Go, Python, JS, Docker, Kubernetes, Jira, Confluence.</div>
+      </div>
+
+    </div>
+
+    <br/><br/>
+    <p class="section-label reveal">// education</p>
+    <h2 class="section-title reveal">Academic <span>Background</span></h2>
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-period">04/2024 – 09/2026 &nbsp;·&nbsp; TU Berlin</div>
+        <div class="tl-role">M.Sc. Computer Science</div>
+        <div class="tl-place">Science of Intelligence Master Track · Berlin University Alliance</div>
+        <div class="tl-desc">Specialization in ML, neuroscience, and privacy-preserving AI. Key courses: Deep Learning, Machine Intelligence I&amp;II, Automatic Image Analysis, Models of Higher Brain Functions, Causal Inference, NLP in Humans and Machines, Optimization Algorithms.</div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot green"></div>
+        <div class="tl-period">11/2020 – 07/2024 &nbsp;·&nbsp; TU Berlin</div>
+        <div class="tl-role">B.Sc. Computer Science</div>
+        <div class="tl-place">Grade: 2.0 (1.9 preliminary) · Thesis: 1.3</div>
+        <div class="tl-desc">Theory-intensive curriculum with AI/ML electives. Thesis: "AlphaZero vs. MCTS: A Study on AI-based Game Strategy in Gomoku." Strong math foundation (Analysis I/II, Stochastics, Discrete Structures).</div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot purple"></div>
+        <div class="tl-period">09/2015 – 06/2020 &nbsp;·&nbsp; Istanbul, Türkiye</div>
+        <div class="tl-role">Abitur (German High School Diploma)</div>
+        <div class="tl-place">Istanbul Erkek Lisesi</div>
+        <div class="tl-desc">Gymnasium with full German-language curriculum. Graduated with German university entrance qualification.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Research ── -->
+<section id="research">
+  <div class="container">
+    <p class="section-label reveal">// research</p>
+    <h2 class="section-title reveal">Current Work <span>& Interests</span></h2>
+
+    <div class="research-card reveal">
+      <div class="research-title">Towards Efficient Text Anonymization: Differential Privacy and Re-Identification Risk-based Explainability</div>
+      <div class="research-meta">MSc Thesis &nbsp;·&nbsp; TU Berlin, Q&amp;U Lab &nbsp;·&nbsp; 2025–2026</div>
+      <div class="research-desc">
+        Privacy-preserving NLP using explainability methods and PII classification to reduce re-identification risk in text datasets while preserving utility. Trained transformer models on DFKI clusters, analyzed privacy–utility trade-offs, and designed novel evaluation benchmarks.
+      </div>
+      <div class="research-tags">
+        <span class="tag tag-blue">Differential Privacy</span>
+        <span class="tag tag-green">Text Anonymization</span>
+        <span class="tag tag-purple">Explainability</span>
+        <span class="tag tag-orange">PyTorch</span>
+        <span class="tag tag-blue">HuggingFace</span>
+      </div>
+    </div>
+
+    <div class="research-card reveal">
+      <div class="research-title">Text Anonymization Meets Explainability</div>
+      <div class="research-meta">Advanced Master's Project &nbsp;·&nbsp; TU Berlin &nbsp;·&nbsp; 2024</div>
+      <div class="research-desc">
+        Earlier work on SLM-based text privacy with a medical dataset. Developed attacker models, privacy–utility benchmarks, and explored anonymization methods building on PETRE and FAISS-based entity matching with SHAP explainability.
+      </div>
+      <div class="research-tags">
+        <span class="tag tag-green">Medical NLP</span>
+        <span class="tag tag-blue">SHAP</span>
+        <span class="tag tag-purple">Small Language Models</span>
+        <span class="tag tag-orange">FAISS</span>
+      </div>
+    </div>
+
+    <div class="research-card reveal">
+      <div class="research-title">Research Interests</div>
+      <div class="research-meta">Ongoing</div>
+      <div class="research-desc">
+        Privacy-preserving ML &nbsp;·&nbsp; Compact / sub-4B parameter models &nbsp;·&nbsp; Post-training (LoRA, RLHF, chain-of-thought distillation) &nbsp;·&nbsp; Agentic workflows &nbsp;·&nbsp; Medical AI &nbsp;·&nbsp; Interpretability &amp; data attribution
+      </div>
+      <div class="research-tags">
+        <span class="tag tag-blue">LoRA / PEFT</span>
+        <span class="tag tag-green">RLHF</span>
+        <span class="tag tag-purple">Medical AI</span>
+        <span class="tag tag-orange">Agentic Systems</span>
+        <span class="tag tag-blue">MCP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ── -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label reveal">// projects</p>
+    <h2 class="section-title reveal">Featured <span>Work</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-icon">🔒</div>
+        <div class="project-name">Simple K-Anonymizer</div>
+        <div class="project-desc">Dynamic privacy-focused text anonymizer masking high-risk tokens until no entity can be re-identified in fewer than k guesses. Built on PETRE with FAISS entity matching and SHAP explainability.</div>
+        <div class="project-footer">
+          <div class="project-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</div>
+          <a href="https://github.com/yamaceay/anon" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">♟️</div>
+        <div class="project-name">AlphaZero vs. MCTS in Gomoku</div>
+        <div class="project-desc">B.Sc. thesis project comparing AlphaZero variants and Monte Carlo Tree Search in Gomoku. Includes theory, implementation, and a playable AI-powered game.</div>
+        <div class="project-footer">
+          <div class="project-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</div>
+          <a href="https://github.com/yamaceay/gomoku" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">🗄️</div>
+        <div class="project-name">VecDB: Local Weaviate</div>
+        <div class="project-desc">Lightweight local vector database using SQL and vector embeddings for advanced data queries. Mirrors Weaviate v3 functionality with Sentence Transformers and OpenAI model support.</div>
+        <div class="project-footer">
+          <div class="project-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</div>
+          <a href="https://github.com/yamaceay/vecDB" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">💬</div>
+        <div class="project-name">Bubbl.ai</div>
+        <div class="project-desc">Platform to save, organize, and share thoughts in dynamic "bubbles," connecting users with like-minded individuals and fostering meaningful discussions.</div>
+        <div class="project-footer">
+          <div class="project-lang"><span class="lang-dot" style="background:#f1e05a"></span>TypeScript</div>
+          <a href="https://github.com/yamaceay/bubbl.ai" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon">🔁</div>
+        <div class="project-name">NQDM</div>
+        <div class="project-desc">Extended TQDM for multi-iteration loops. Compresses nested loops into one — ideal for AI hyperparameter sweeps. Simple API, zero extra dependencies.</div>
+        <div class="project-footer">
+          <div class="project-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</div>
+          <a href="https://github.com/yamaceay/NQDM" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="border-style:dashed; align-items:center; justify-content:center; text-align:center; min-height:180px;">
+        <div style="color:var(--muted); font-size:.88rem; margin-bottom:.8rem;">More on GitHub</div>
+        <a href="https://github.com/yamaceay" class="social-btn" target="_blank" rel="noopener" style="font-size:.82rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View all repos
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ── -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label reveal">// skills</p>
+    <h2 class="section-title reveal">Technical <span>Stack</span></h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">ML / AI</div>
+        <div class="skill-list">
+          <span class="skill-item">PyTorch</span>
+          <span class="skill-item">HuggingFace Transformers</span>
+          <span class="skill-item">LangChain</span>
+          <span class="skill-item">Differential Privacy</span>
+          <span class="skill-item">LoRA / PEFT</span>
+          <span class="skill-item">RLHF / RLAIF</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-list">
+          <span class="skill-item">Python</span>
+          <span class="skill-item">Go</span>
+          <span class="skill-item">TypeScript / JS</span>
+          <span class="skill-item">ReasonML</span>
+          <span class="skill-item">Bash</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Infrastructure</div>
+        <div class="skill-list">
+          <span class="skill-item">Kubernetes</span>
+          <span class="skill-item">Docker</span>
+          <span class="skill-item">Crossplane</span>
+          <span class="skill-item">SAP BTP</span>
+          <span class="skill-item">DFKI Clusters (HPC)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Data & Viz</div>
+        <div class="skill-list">
+          <span class="skill-item">FAISS</span>
+          <span class="skill-item">SHAP / Explainability</span>
+          <span class="skill-item">Matplotlib / Seaborn</span>
+          <span class="skill-item">Manim</span>
+          <span class="skill-item">SQL & Vector DBs</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Research Skills</div>
+        <div class="skill-list">
+          <span class="skill-item">Scientific Writing</span>
+          <span class="skill-item">Benchmark Design</span>
+          <span class="skill-item">Statistical Analysis</span>
+          <span class="skill-item">Paper Reading</span>
+          <span class="skill-item">Reproducible Research</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Human Languages</div>
+        <div class="skill-list">
+          <span class="skill-item">Turkish (native)</span>
+          <span class="skill-item">German (proficient)</span>
+          <span class="skill-item">English (proficient)</span>
+          <span class="skill-item">Spanish (basic)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Grades ── -->
+<section id="grades">
+  <div class="container">
+    <p class="section-label reveal">// academic performance</p>
+    <h2 class="section-title reveal">Courses & <span>Grades</span></h2>
+    <p class="grade-system-note reveal">German grading scale &mdash; 1.0 is the highest possible grade, 4.0 is the minimum passing grade. Longer bar = better grade.</p>
+    <div class="grade-tabs reveal">
+      <button class="grade-tab active" data-tab="master">M.Sc. — TU Berlin (ongoing)</button>
+      <button class="grade-tab" data-tab="bachelor">B.Sc. — TU Berlin (2020–2024)</button>
+    </div>
+    <div id="grade-chart" class="grade-chart reveal"></div>
+    <div class="grade-legend reveal">
+      <span class="gleg"><span class="gleg-dot" style="background:#3fb950"></span>1.0–1.5 · sehr gut</span>
+      <span class="gleg"><span class="gleg-dot" style="background:#58a6ff"></span>1.6–2.5 · gut</span>
+      <span class="gleg"><span class="gleg-dot" style="background:#ffa657"></span>2.6–3.5 · befriedigend</span>
+      <span class="gleg"><span class="gleg-dot" style="background:#f85149"></span>3.6–4.0 · ausreichend</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Blog ── -->
+<section id="blog">
+  <div class="container">
+    <p class="section-label reveal">// writing</p>
+    <h2 class="section-title reveal">From the <span>Blog</span></h2>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-tag">Theory</div>
+        <a href="https://medium.com/the-quantastic-journal/weirdest-explanation-of-memory-727147f14ac9" class="blog-title" target="_blank">Memory in Various Contexts</a>
+        <div class="blog-excerpt">An unconventional take on memory — bridging cognitive science, information theory, and machine learning.</div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-tag">Math</div>
+        <a href="https://pub.aimind.so/game-theory-for-dummies-433bc319f7e5" class="blog-title" target="_blank">Game Theory for Dummies</a>
+        <div class="blog-excerpt">Breaking down Nash equilibria, dominant strategies, and strategic decision-making for the curious mind.</div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-tag">Statistics</div>
+        <a href="https://yamaceay.medium.com/statistical-tests-simplified-100bf655f482" class="blog-title" target="_blank">Statistical Tests Simplified</a>
+        <div class="blog-excerpt">A clean, intuitive guide to choosing and interpreting the right statistical test for your data.</div>
+      </div>
+      <div class="blog-card reveal" style="display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:.6rem;">
+        <div class="blog-tag">50+ Articles</div>
+        <div style="color:var(--muted); font-size:.85rem;">Theory-driven perspectives on AI, algorithms, and mathematics — written to clarify complexity, not hide it.</div>
+        <a href="https://medium.com/@yamaceay" target="_blank" style="font-size:.85rem; color:var(--accent); font-weight:500;">Read all on Medium →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label reveal" style="text-align:center">// contact</p>
+    <h2 class="section-title reveal" style="text-align:center">Get In <span>Touch</span></h2>
+    <div class="beyond-strip reveal">
+      <div class="beyond-card">
+        <img src="photo_guitar.jpg" alt="Yamaç playing guitar" />
+        <div class="beyond-label">🎸 &nbsp;Live at a bar</div>
+      </div>
+      <div class="beyond-card">
+        <img src="photo_handstand.jpg" alt="Yamaç doing a handstand" />
+        <div class="beyond-label">🤸 &nbsp;Capoeira in my free time</div>
+      </div>
+    </div>
+    <div class="contact-box reveal">
+      <h3>Let's have a chat</h3>
+      <p>Whether you're a collaborator or just curious about my work — my inbox is open.</p>
+      <a href="mailto:yamacerenay2001@gmail.com" class="contact-email">yamacerenay2001@gmail.com</a>
+      <div class="contact-socials">
+        <a href="https://linkedin.com/in/yamaceay" class="social-btn" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/yamaceay" class="social-btn" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://kaggle.com/yamaerenay" class="social-btn" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.336z"/></svg>
+          Kaggle
+        </a>
+        <a href="https://medium.com/@yamaceay" class="social-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          Medium
+        </a>
+        <a href="https://www.instagram.com/yamaceay" class="social-btn" target="_blank">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <span>Built by Yamaç Eren Ay · Berlin, 2026</span>
+</footer>
+
+<!-- ── JavaScript ── -->
+<script>
+  // Typewriter
+  const phrases = [
+    'MSc CS Student @ TU Berlin',
+    'Software Developer with AI/ML Focus',
+    'Small Language Model Enthusiast',
+    'Working Student @ SAP AI Core',
+    'Open Source Contributor',
+    'Medium Writer (50+ articles)',
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  const tw = document.getElementById('typewriter');
+  function type() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      tw.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      tw.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 38 : 72);
+  }
+  type();
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        // stagger siblings
+        const siblings = [...e.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+        const idx = siblings.indexOf(e.target);
+        setTimeout(() => { e.target.classList.add('visible'); }, idx * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Nav burger
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ── Grades chart ──
+  // Grade data loaded directly from bachelor_notes.csv and master_notes.csv
+  // Entries with grade '*' (pass/no grade) are excluded
+  const gradeData = {
+    master: [
+      { name: 'Machine Learning in Neuroscience',              grade: 1.0, lp: 3  },
+      { name: 'Algebraic Process Calculi',                     grade: 1.0, lp: 6  },
+      { name: 'Natural Language Processing in Humans & Machines', grade: 1.0, lp: 3 },
+      { name: 'Psychologie für Ingenieure und Ingenieurinnen', grade: 1.3, lp: 6  },
+      { name: 'Models of Higher Brain Functions',              grade: 1.3, lp: 12 },
+      { name: 'Automatic Image Analysis',                      grade: 1.3, lp: 6  },
+      { name: 'Optimization Algorithms',                       grade: 1.7, lp: 6  },
+      { name: 'Kausale Inferenz',                              grade: 1.7, lp: 6  },
+      { name: 'Deep Learning 2',                               grade: 1.7, lp: 6  },
+      { name: 'Study Project Quality & Usability',             grade: 1.7, lp: 9  },
+      { name: 'Machine Intelligence I',                        grade: 2.0, lp: 6  },
+      { name: 'Machine Intelligence II',                       grade: 2.3, lp: 6  },
+      { name: 'Foundations of Stochastic Processes',           grade: 2.7, lp: 6  },
+      { name: 'Modelle zur Informationsverarbeitung im Gehirn',grade: 3.0, lp: 6  },
+    ],
+    bachelor: [
+      { name: 'Informatik Propädeutikum',                           grade: 1.0, lp: 3  },
+      { name: 'Informationssysteme und Datenanalyse',               grade: 1.0, lp: 6  },
+      { name: 'Stochastik für Informatik',                          grade: 1.0, lp: 9  },
+      { name: 'Analysis I und Lineare Algebra',                     grade: 1.0, lp: 12 },
+      { name: 'Continuous Software Engineering',                    grade: 1.0, lp: 6  },
+      { name: 'AlphaZero vs. MCTS — Bachelorarbeit',               grade: 1.3, lp: 12 },
+      { name: 'Agententechnologien: Grundlagen und Anwendungen',    grade: 1.3, lp: 6  },
+      { name: 'Lambda-Kalkül und Typ-Systeme',                     grade: 1.3, lp: 6  },
+      { name: 'Ausgewählte Themen: Algorithmen und Datenstrukturen',grade: 1.3, lp: 3  },
+      { name: 'Einführung in die Künstliche Intelligenz',           grade: 1.3, lp: 6  },
+      { name: 'Systemprogrammierung',                               grade: 1.7, lp: 6  },
+      { name: 'Algorithmen und Datenstrukturen',                    grade: 1.7, lp: 6  },
+      { name: 'Verteilte Systeme',                                  grade: 1.7, lp: 6  },
+      { name: 'Algorithmentheorie',                                 grade: 1.7, lp: 6  },
+      { name: 'Analysis II für Ingenieurwissenschaften',            grade: 1.7, lp: 9  },
+      { name: 'Rechnerorganisation',                                grade: 2.0, lp: 6  },
+      { name: 'Wissenschaftliches Rechnen',                         grade: 2.0, lp: 6  },
+      { name: 'Kognitive Algorithmen',                              grade: 2.0, lp: 6  },
+      { name: 'Einführung in die Programmierung',                   grade: 2.3, lp: 6  },
+      { name: 'Künstliche Intelligenz: Grundlagen und Anwendungen', grade: 2.7, lp: 6  },
+      { name: 'Informatik und Gesellschaft',                        grade: 2.7, lp: 6  },
+      { name: 'Rechnernetze und Verteilte Systeme',                 grade: 3.0, lp: 6  },
+      { name: 'Softwaretechnik und Programmierparadigmen',          grade: 3.0, lp: 6  },
+      { name: 'Formale Sprachen und Automaten',                     grade: 3.0, lp: 6  },
+      { name: 'Diskrete Strukturen',                                grade: 3.7, lp: 6  },
+      { name: 'Berechenbarkeit und Komplexität',                    grade: 4.0, lp: 6  },
+      { name: 'Logik',                                              grade: 4.0, lp: 6  },
+    ]
+  };
+
+  function gradeColor(g) {
+    if (g <= 1.5) return '#3fb950';
+    if (g <= 2.5) return '#58a6ff';
+    if (g <= 3.5) return '#ffa657';
+    return '#f85149';
+  }
+
+  function barWidth(g) {
+    // 1.0 → 100%, 4.0 → 15% (we keep a small min so bars always show)
+    return Math.max(15, Math.round(((4.5 - g) / 3.5) * 100));
+  }
+
+  function renderGrades(tab) {
+    const courses = gradeData[tab];
+    const chart = document.getElementById('grade-chart');
+    chart.innerHTML = courses.map((c, i) => `
+      <div class="grade-row" style="animation-delay:${i * 30}ms">
+        <div class="grade-name" title="${c.name}">${c.name}</div>
+        <div class="grade-bar-wrap">
+          <div class="grade-bar" data-w="${barWidth(c.grade)}"
+               style="width:0%;background:${gradeColor(c.grade)}"></div>
+        </div>
+        <div class="grade-val" style="color:${gradeColor(c.grade)}">${c.grade.toFixed(1)}</div>
+      </div>
+    `).join('');
+    // Animate bars after a tick so transition fires
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      chart.querySelectorAll('.grade-bar').forEach(b => {
+        b.style.width = b.dataset.w + '%';
+      });
+    }));
+  }
+
+  renderGrades('master');
+
+  document.querySelectorAll('.grade-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.grade-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGrades(btn.dataset.tab);
+    });
+  });
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--text)' : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>

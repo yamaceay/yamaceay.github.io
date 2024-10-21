@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yamaç Eren Ay — CV</title>
+  <meta name="description" content="Curriculum Vitae — Yamaç Eren Ay. Computer Science M.Sc. candidate at TU Berlin, specialized in Machine Learning and Neuroscience." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #0d1117;
+      --bg2:      #161b22;
+      --bg3:      #21262d;
+      --border:   #30363d;
+      --text:     #e6edf3;
+      --muted:    #8b949e;
+      --accent:   #58a6ff;
+      --accent2:  #3fb950;
+      --accent3:  #d2a8ff;
+      --accent4:  #ffa657;
+      --shadow:   0 8px 32px rgba(0,0,0,.45);
+      --radius:   12px;
+      --font:     'Segoe UI', system-ui, -apple-system, sans-serif;
+      --mono:     'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+    a:hover { opacity: .75; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.6rem;
+      background: rgba(13,17,23,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-back {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .85rem; color: var(--muted); font-weight: 500;
+    }
+    .topbar-back:hover { color: var(--text); opacity: 1; }
+    .topbar-actions { display: flex; gap: .7rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .82rem; font-weight: 600;
+      padding: .5rem 1rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg2); color: var(--text);
+      transition: border-color .2s, background .2s, transform .15s;
+      cursor: pointer;
+    }
+    .btn:hover { border-color: var(--accent); background: var(--bg3); transform: translateY(-1px); opacity: 1; }
+    .btn-primary { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Page shell ── */
+    .page {
+      max-width: 980px; margin: 0 auto;
+      padding: 2.4rem 1.6rem 4rem;
+    }
+
+    /* ── Header ── */
+    .cv-header {
+      display: flex; align-items: center; gap: 1.6rem;
+      padding-bottom: 1.8rem; margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cv-avatar {
+      width: 88px; height: 108px; border-radius: 12px;
+      object-fit: cover; object-position: center 15%;
+      border: 2px solid var(--border); flex-shrink: 0;
+    }
+    .cv-name { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: .3rem; }
+    .cv-name span { color: var(--accent); }
+    .cv-title { color: var(--muted); font-size: .95rem; margin-bottom: .15rem; }
+    .cv-subtitle { font-family: var(--mono); font-size: .82rem; color: var(--accent3); }
+
+    /* ── Contact strip ── */
+    .cv-contact {
+      display: flex; flex-wrap: wrap; gap: .6rem 1.4rem;
+      margin-bottom: 2.4rem;
+      font-family: var(--mono); font-size: .82rem; color: var(--muted);
+    }
+    .cv-contact a { color: var(--muted); }
+    .cv-contact a:hover { color: var(--accent); }
+    .cv-contact span::before { content: ''; }
+
+    /* ── Layout ── */
+    .cv-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.6rem; align-items: start; }
+
+    .cv-section { margin-bottom: 2.4rem; }
+    .cv-section:last-child { margin-bottom: 0; }
+    .cv-section-label {
+      font-family: var(--mono); font-size: .74rem; color: var(--accent);
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .cv-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ── Entry (education / experience) ── */
+    .entry { position: relative; padding-left: 1.1rem; margin-bottom: 1.6rem; border-left: 2px solid var(--border); }
+    .entry:last-child { margin-bottom: 0; }
+    .entry::before {
+      content: ''; position: absolute; left: -5px; top: 3px;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    }
+    .entry.green::before { background: var(--accent2); }
+    .entry.purple::before { background: var(--accent3); }
+    .entry.orange::before { background: var(--accent4); }
+    .entry-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .4rem; margin-bottom: .15rem; }
+    .entry-role { font-size: 1rem; font-weight: 600; }
+    .entry-period { font-family: var(--mono); font-size: .76rem; color: var(--muted); white-space: nowrap; }
+    .entry-place-row { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+    .entry-logo {
+      width: 22px; height: 22px; object-fit: contain; flex-shrink: 0;
+      background: #fff; border: 1px solid var(--border); border-radius: 5px;
+      padding: 2px;
+    }
+    .entry-place { font-size: .87rem; color: var(--accent); }
+    .entry-place .loc { color: var(--muted); }
+    .entry-desc { font-size: .87rem; color: var(--muted); margin-bottom: .5rem; }
+    .entry-desc:last-child { margin-bottom: 0; }
+    .entry-desc strong { color: var(--text); font-weight: 600; }
+    .entry-contact { font-size: .78rem; color: var(--muted); margin-top: .3rem; }
+    .entry-contact a { color: var(--muted); }
+    .entry-contact a:hover { color: var(--accent); }
+    .entry-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+    .tag {
+      font-size: .71rem; font-family: var(--mono);
+      padding: .18rem .6rem; border-radius: 99px;
+      border: 1px solid; font-weight: 500;
+    }
+    .tag-blue  { color: var(--accent);  border-color: rgba(88,166,255,.35);  background: rgba(88,166,255,.08); }
+    .tag-green { color: var(--accent2); border-color: rgba(63,185,80,.35);   background: rgba(63,185,80,.08); }
+    .tag-purple{ color: var(--accent3); border-color: rgba(210,168,255,.35); background: rgba(210,168,255,.08); }
+    .tag-orange{ color: var(--accent4); border-color: rgba(255,166,87,.35);  background: rgba(255,166,87,.08); }
+
+    /* ── Sidebar cards ── */
+    .side-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.1rem 1.3rem;
+      margin-bottom: 1.1rem;
+    }
+    .side-card:last-child { margin-bottom: 0; }
+    .skill-pill-group { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+    .lang-row { display: grid; grid-template-columns: 90px 1fr 34px; align-items: center; gap: .6rem; margin-bottom: .55rem; }
+    .lang-row:last-child { margin-bottom: 0; }
+    .lang-name { font-size: .82rem; color: var(--text); }
+    .lang-bar-wrap { height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+    .lang-bar { height: 100%; border-radius: 4px; background: var(--accent); }
+    .lang-pct { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-align: right; }
+
+    .cert-item { margin-bottom: 1rem; }
+    .cert-item:last-child { margin-bottom: 0; }
+    .cert-name { font-size: .87rem; font-weight: 600; margin-bottom: .1rem; }
+    .cert-meta { font-family: var(--mono); font-size: .74rem; color: var(--muted); margin-bottom: .2rem; }
+    .cert-link { font-size: .78rem; word-break: break-all; }
+
+    .achieve-item { margin-bottom: .9rem; }
+    .achieve-item:last-child { margin-bottom: 0; }
+    .achieve-name { font-size: .87rem; font-weight: 600; }
+    .achieve-link { font-size: .78rem; display: block; margin-top: .15rem; }
+
+    .interest-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .interest-pill {
+      font-size: .8rem; padding: .3rem .7rem; border-radius: 99px;
+      background: var(--bg3); border: 1px solid var(--border); color: var(--muted);
+    }
+
+    footer.cv-footer {
+      text-align: center; padding: 2rem 1.6rem;
+      font-family: var(--mono); font-size: .78rem; color: var(--muted);
+      border-top: 1px solid var(--border); margin-top: 1rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 760px) {
+      .cv-grid { grid-template-columns: 1fr; }
+      .cv-header { flex-direction: column; text-align: center; }
+      .cv-contact { justify-content: center; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      @page { size: A4; margin: 10mm 12mm; }
+      /* Redefine the theme's own variables for a light page — every
+         rule below already reads colors through var(--x), so this alone
+         fixes contrast everywhere instead of chasing it class by class. */
+      :root {
+        --bg:      #ffffff;
+        --bg2:     #eef0f3;
+        --bg3:     #e4e7eb;
+        --border:  #aab1ba;
+        --text:    #000000;
+        --muted:   #333a42;
+        --accent:  #0b4aa2;
+        --accent2: #106b34;
+        --accent3: #62199c;
+        --accent4: #8a4b06;
+        --shadow:  none;
+      }
+      /* Force backgrounds (side-cards, tag chips, language bars) to print
+         even when the browser's "print background graphics" is off. */
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+      html { font-size: 11.5px; }
+      body { background: var(--bg); color: var(--text); line-height: 1.4; }
+      .topbar { display: none; }
+      .page { max-width: 100%; padding: 0; }
+      a { text-decoration: underline; text-underline-offset: 2px; }
+      /* The page's content width falls under the 760px mobile breakpoint,
+         which would otherwise stack the grid and blow past one page. */
+      .cv-grid { grid-template-columns: 2fr 1fr !important; }
+      .cv-header { flex-direction: row !important; text-align: left !important; padding-bottom: .7rem; margin-bottom: .8rem; }
+      .cv-contact { justify-content: flex-start !important; }
+      .cv-avatar { width: 58px; height: 70px; }
+      .cv-contact { margin-bottom: 1rem; gap: .35rem 1.1rem; }
+      .cv-grid { gap: 1.6rem; }
+      .cv-section { margin-bottom: .85rem; }
+      .cv-section-label { margin-bottom: .5rem; }
+      .cv-section-label::after { background: var(--border); }
+      .entry { margin-bottom: .55rem; padding-left: .9rem; }
+      .entry-place-row { margin-bottom: .35rem; }
+      .entry-desc { margin-bottom: .2rem; }
+      .entry-tags { margin-top: .25rem; gap: .3rem; }
+      .tag { border-color: #ccc !important; background: #f0f0f0 !important; color: #333 !important; padding: .12rem .5rem; }
+      .side-card { padding: .7rem .9rem; margin-bottom: .6rem; }
+      .cert-item, .achieve-item { margin-bottom: .45rem; }
+      .lang-row { margin-bottom: .3rem; }
+      footer.cv-footer { padding: .6rem 1.6rem; margin-top: .3rem; }
+      .cv-header, .entry, .side-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="topbar-back">&larr;&nbsp; Back to site</a>
+  <div class="topbar-actions">
+    <button class="btn btn-primary" onclick="window.print()">&#128424;&nbsp; Print / Save as PDF</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ── Header ── -->
+  <div class="cv-header">
+    <img src="photo_main.jpg" alt="Yamaç Eren Ay" class="cv-avatar" />
+    <div>
+      <div class="cv-name">Yamaç Eren <span>Ay</span></div>
+      <div class="cv-title">Software Engineer / Computer Scientist</div>
+      <div class="cv-subtitle">Specialized in Machine Learning and Neuroscience</div>
+    </div>
+  </div>
+
+  <div class="cv-contact">
+    <a href="mailto:yamacerenay2001@gmail.com">&#9993; yamacerenay2001@gmail.com</a>
+    <span>&#128205; 13347 Berlin, Deutschland</span>
+    <a href="https://yamaceay.github.io" target="_blank" rel="noopener">&#127760; yamaceay.github.io</a>
+    <a href="https://linkedin.com/in/yamaceay" target="_blank" rel="noopener">in/ linkedin.com/in/yamaceay</a>
+    <a href="https://github.com/yamaceay" target="_blank" rel="noopener">&#9013; github.com/yamaceay</a>
+    <a href="https://medium.com/@yamaceay" target="_blank" rel="noopener">&#9998; medium.com/@yamaceay</a>
+  </div>
+
+  <div class="cv-grid">
+
+    <!-- ── Main column ── -->
+    <div>
+
+      <!-- Experience -->
+      <div class="cv-section">
+        <div class="cv-section-label">Working Experience</div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <div class="entry-role">Developer (Associate)</div>
+            <div class="entry-period">09/2026 &ndash;</div>
+          </div>
+          <div class="entry-place-row">
+            <img src="sap_logo.jpeg" alt="SAP" class="entry-logo" />
+            <div class="entry-place">AI Core, SAP Business AI <span class="loc">&middot; Potsdam, Germany</span></div>
+          </div>
+          <div class="entry-desc">Official AI Core Python SDK team for SAP Business AI.</div>
+          <div class="entry-contact">Contact: Sebastian Pfahl &middot; <a href="mailto:sebastian.pfahl@sap.com">sebastian.pfahl@sap.com</a></div>
+        </div>
+
+        <div class="entry green">
+          <div class="entry-top">
+            <div class="entry-role">Working Student Software Developer</div>
+            <div class="entry-period">10/2024 &ndash; 08/2026</div>
+          </div>
+          <div class="entry-place-row">
+            <img src="sap_logo.jpeg" alt="SAP" class="entry-logo" />
+            <div class="entry-place">AI Core, SAP Business AI <span class="loc">&middot; Potsdam, Germany</span></div>
+          </div>
+          <div class="entry-desc">A service within SAP BTP designed to manage the lifecycle of AI assets.</div>
+          <div class="entry-tags">
+            <span class="tag tag-blue">Python</span>
+            <span class="tag tag-green">Go</span>
+            <span class="tag tag-purple">TypeScript</span>
+            <span class="tag tag-orange">Edge AI</span>
+            <span class="tag tag-blue">LLMs</span>
+            <span class="tag tag-green">AI Agents</span>
+            <span class="tag tag-purple">Big Data</span>
+            <span class="tag tag-orange">Kubernetes</span>
+            <span class="tag tag-blue">Crossplane</span>
+          </div>
+          <div class="entry-contact">Contact: Sander Wozniak &middot; <a href="mailto:sander.wozniak@sap.com">sander.wozniak@sap.com</a></div>
+        </div>
+
+        <div class="entry purple">
+          <div class="entry-top">
+            <div class="entry-role">Working Student Cloud-Native Developer</div>
+            <div class="entry-period">02/2024 &ndash; 09/2024</div>
+          </div>
+          <div class="entry-place-row">
+            <img src="sap_logo.jpeg" alt="SAP" class="entry-logo" />
+            <div class="entry-place">SAP Master Data Integration <span class="loc">&middot; Potsdam, Germany</span></div>
+          </div>
+          <div class="entry-desc">A cloud service that synchronizes master data across SAP solutions.</div>
+          <div class="entry-tags">
+            <span class="tag tag-blue">LangChain</span>
+            <span class="tag tag-green">Docker</span>
+            <span class="tag tag-purple">Kubernetes</span>
+            <span class="tag tag-orange">ReasonML</span>
+            <span class="tag tag-blue">TypeScript</span>
+          </div>
+          <div class="entry-contact">Contact: Sander Wozniak &middot; <a href="mailto:sander.wozniak@sap.com">sander.wozniak@sap.com</a></div>
+        </div>
+
+        <div class="entry orange">
+          <div class="entry-top">
+            <div class="entry-role">Working Student Software Engineer / IT Consultant</div>
+            <div class="entry-period">06/2022 &ndash; 01/2024</div>
+          </div>
+          <div class="entry-place-row">
+            <img src="hiq_germany_logo.jpeg" alt="HiQ Germany" class="entry-logo" />
+            <div class="entry-place">HiQ Germany GmbH <span class="loc">&middot; Berlin, Germany</span></div>
+          </div>
+          <div class="entry-desc">&ldquo;We digitalize products, processes and organizations.&rdquo; Full-stack and backend development, DevOps.</div>
+          <div class="entry-tags">
+            <span class="tag tag-blue">Go</span>
+            <span class="tag tag-green">Python</span>
+            <span class="tag tag-purple">JavaScript</span>
+            <span class="tag tag-orange">Docker</span>
+            <span class="tag tag-blue">Kubernetes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="cv-section">
+        <div class="cv-section-label">Education</div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <div class="entry-role">Computer Science, M.Sc.</div>
+            <div class="entry-period">04/2024 &ndash; 08/2026</div>
+          </div>
+          <div class="entry-place-row">
+            <img src="tuberlin_logo.jpeg" alt="TU Berlin" class="entry-logo" />
+            <div class="entry-place">Technische Universität Berlin <span class="loc">&middot; Berlin, Germany</span></div>
+          </div>
+          <div class="entry-desc">Thesis conducted in partnership with <strong>DFKI</strong> (Deutsches Forschungszentrum für Künstliche Intelligenz).</div>
+          <div class="entry-desc">Science of Intelligence Master Track &middot; Berlin University Alliance. Specialization in ML, neuroscience, and privacy-preserving AI.</div>
+          <div class="entry-desc"><strong>Thesis:</strong> Towards Efficient Text Anonymization &mdash; Differential Privacy and Re-Identification Risk-based Explainability.</div>
+          <div class="entry-tags">
+            <span class="tag tag-blue">Deep Learning</span>
+            <span class="tag tag-green">Machine Intelligence I &amp; II</span>
+            <span class="tag tag-purple">Automatic Image Analysis</span>
+            <span class="tag tag-orange">Causal Inference</span>
+            <span class="tag tag-blue">NLP in Humans &amp; Machines</span>
+          </div>
+        </div>
+
+        <div class="entry green">
+          <div class="entry-top">
+            <div class="entry-role">Computer Science, B.Sc.</div>
+            <div class="entry-period">11/2020 &ndash; 07/2024</div>
+          </div>
+          <div class="entry-place-row">
+            <img src="tuberlin_logo.jpeg" alt="TU Berlin" class="entry-logo" />
+            <div class="entry-place">Technische Universität Berlin <span class="loc">&middot; Berlin, Germany</span></div>
+          </div>
+          <div class="entry-desc">Theory-intensive curriculum with AI/ML electives. Final grade: <strong>2.0</strong> (1.9 preliminary).</div>
+          <div class="entry-desc"><strong>Thesis (1.3):</strong> AlphaZero gegen MCTS &mdash; Eine Studie zur KI-basierten Spielstrategie in Gomoku.</div>
+          <div class="entry-tags">
+            <span class="tag tag-blue">Analysis &amp; Linear Algebra</span>
+            <span class="tag tag-green">Stochastics</span>
+            <span class="tag tag-purple">Algorithms &amp; Data Structures</span>
+            <span class="tag tag-orange">Discrete Structures</span>
+          </div>
+        </div>
+
+        <div class="entry purple">
+          <div class="entry-top">
+            <div class="entry-role">High School (Abitur)</div>
+            <div class="entry-period">09/2015 &ndash; 06/2020</div>
+          </div>
+          <div class="entry-place-row">
+            <img src="istanbul_erkek_lisesi_logo.jpeg" alt="Istanbul Erkek Lisesi" class="entry-logo" />
+            <div class="entry-place">Istanbul Erkek Lisesi <span class="loc">&middot; Istanbul, Türkiye</span></div>
+          </div>
+          <div class="entry-desc">Gymnasium with full German-language curriculum. Graduated with German university entrance qualification.</div>
+        </div>
+      </div>
+
+    </div><!-- /main column -->
+
+    <!-- ── Sidebar ── -->
+    <div>
+
+      <!-- Skills -->
+      <div class="cv-section">
+        <div class="cv-section-label">Skills</div>
+        <div class="side-card">
+          <div class="skill-pill-group">
+            <span class="tag tag-blue">Scientific Writing &amp; Presentation</span>
+            <span class="tag tag-green">Agentic Workflows</span>
+            <span class="tag tag-purple">Machine Learning</span>
+            <span class="tag tag-orange">Data Science</span>
+            <span class="tag tag-blue">Data Visualization</span>
+            <span class="tag tag-green">Cloud-Native Development</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="cv-section">
+        <div class="cv-section-label">Languages</div>
+        <div class="side-card">
+          <div class="lang-row"><span class="lang-name">German</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:80%"></div></div><span class="lang-pct">80%</span></div>
+          <div class="lang-row"><span class="lang-name">English</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:80%"></div></div><span class="lang-pct">80%</span></div>
+          <div class="lang-row"><span class="lang-name">Turkish</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:100%"></div></div><span class="lang-pct">100%</span></div>
+          <div class="lang-row"><span class="lang-name">Spanish</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:40%"></div></div><span class="lang-pct">40%</span></div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="cv-section">
+        <div class="cv-section-label">Certification &amp; Courses</div>
+        <div class="side-card">
+          <div class="cert-item">
+            <div class="cert-name">Data or Specimens Only Research</div>
+            <div class="cert-meta">05/2025 &ndash; 05/2028</div>
+            <a class="cert-link" href="https://www.citiprogram.org/verify/?we6b33b1a-42ec-4fd2-976e-d4cfdbf4d203-69398310" target="_blank" rel="noopener">Verify credential &rarr;</a>
+          </div>
+          <div class="cert-item">
+            <div class="cert-name">Winter School &ldquo;Ethics of Neuroscience and AI&rdquo;</div>
+            <div class="cert-meta">04/2025</div>
+            <a class="cert-link" href="http://bit.ly/4tBSn3Q" target="_blank" rel="noopener">View &rarr;</a>
+          </div>
+          <div class="cert-item">
+            <div class="cert-name">IBM Data Science</div>
+            <div class="cert-meta">10/2021</div>
+            <a class="cert-link" href="https://credentials.edx.org/credentials/bc8b67e5b25c4ab6a282a074e87b73a8/" target="_blank" rel="noopener">Verify credential &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other achievements -->
+      <div class="cv-section">
+        <div class="cv-section-label">Other Achievements</div>
+        <div class="side-card">
+          <div class="achieve-item">
+            <div class="achieve-name">Kaggle Datasets and Notebooks Expert</div>
+            <a class="achieve-link" href="https://www.kaggle.com/yamaerenay" target="_blank" rel="noopener">kaggle.com/yamaerenay &rarr;</a>
+          </div>
+          <div class="achieve-item">
+            <div class="achieve-name">Medium Writer (50+ articles)</div>
+            <a class="achieve-link" href="https://medium.com/@yamaceay" target="_blank" rel="noopener">medium.com/@yamaceay &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="cv-section">
+        <div class="cv-section-label">Interests</div>
+        <div class="side-card">
+          <div class="interest-list">
+            <span class="interest-pill">&#127928; Guitar</span>
+            <span class="interest-pill">&#128187; Open Source</span>
+            <span class="interest-pill">&#127939; Sports</span>
+            <span class="interest-pill">&#128274; Cybersecurity</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+
+  </div><!-- /cv-grid -->
+
+</div><!-- /page -->
+
+<footer class="cv-footer">
+  <span>Yamaç Eren Ay &middot; Berlin, 2026 &middot; <a href="index.html">yamaceay.github.io</a></span>
+</footer>
+
+</body>
+</html>

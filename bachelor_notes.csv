@@ -1,0 +1,29 @@
+module_name,grade,LP,type
+AlphaZero gegen MCTS: KI-Spielstrategie in Gomoku,1.3,12,Bachelorarbeit
+Informatik Propädeutikum,1.0,3,Pflicht: Wissenschaftliches Arbeiten
+Systemprogrammierung,1.7,6,Pflicht: Technische Grundlagen
+Rechnernetze und Verteilte Systeme,3.0,6,Pflicht: Technische Grundlagen
+Rechnerorganisation,2.0,6,Pflicht: Technische Grundlagen
+Einführung in die Programmierung,2.3,6,Pflicht: Methodisch-Praktische Grundlagen
+Algorithmen und Datenstrukturen,1.7,6,Pflicht: Methodisch-Praktische Grundlagen
+Softwaretechnik und Programmierparadigmen,3.0,6,Pflicht: Methodisch-Praktische Grundlagen
+Informationssysteme und Datenanalyse,1.0,6,Pflicht: Methodisch-Praktische Grundlagen
+Wissenschaftliches Rechnen,2.0,6,Pflicht: Methodisch-Praktische Grundlagen
+Berechenbarkeit und Komplexität,4.0,6,Pflicht: Theoretische Grundlagen
+Formale Sprachen und Automaten,3.0,6,Pflicht: Theoretische Grundlagen
+Logik,4.0,6,Pflicht: Theoretische Grundlagen
+Diskrete Strukturen,3.7,6,Pflicht: Mathematik
+Stochastik für Informatik,1.0,9,Pflicht: Mathematik
+Analysis I und Lineare Algebra für Ingenieurwissenschaften,1.0,12,Pflicht: Mathematik
+Informatik und Gesellschaft,2.7,6,Pflicht: Gesellschaftliche Relevanz
+Verteilte Systeme,1.7,6,Wahlpflicht: Technische Informatik
+Algorithmentheorie,1.7,6,Wahlpflicht: Theoretische Informatik
+Praktikum: Intelligente Softwaresysteme,*,6,Wahlpflicht: Programmierpraktikum
+Agententechnologien: Grundlagen und Anwendungen,1.3,6,Wahlpflicht: Katalog Informatik
+Künstliche Intelligenz: Grundlagen und Anwendungen,2.7,6,Wahlpflicht: Katalog Informatik
+Lambda-Kalkül und Typ-Systeme,1.3,6,Wahlpflicht: Katalog Informatik
+Continuous Software Engineering,1.0,6,Wahlpflicht: Katalog Informatik
+Ausgewählte Themen zu Algorithmen und Datenstrukturen,1.3,3,Wahlpflicht: Katalog Informatik
+Einführung in die Künstliche Intelligenz,1.3,6,Wahlpflicht: Katalog Informatik
+Analysis II für Ingenieurwissenschaften,1.7,9,Wahlbereich
+Kognitive Algorithmen,2.0,6,Wahlbereich
