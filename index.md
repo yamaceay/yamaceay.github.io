@@ -99,3 +99,5 @@ I’m always open to chatting about AI theory, projects, or anything in between.
 [![Kaggle](https://img.shields.io/badge/-Kaggle-20BEFF?style=flat-square&logo=kaggle&logoColor=white&link=https://www.kaggle.com/yamaerenay)](https://www.kaggle.com/yamaerenay)
 
 ## Thanks for stopping by!
+
+<img src="me_fun.jpeg" alt="Me" width=300/>
