@@ -64,6 +64,9 @@ Here are some of the AI-related projects I've worked on - nothing too polished, 
 - **[AlphaZero vs. MCTS: AI-based Game Strategy in Gomoku](https://github.com/yamaceay/gomoku)**  
   The source code for my Bachelor's thesis, which deals with AI strategies in Gomoku by comparing **AlphaZero** and **MCTS (Monte Carlo Tree Search)**. The project contains both theoretical and implementation details, and offers a playable AI-powered Gomoku game. See [README.md](https://github.com/yamaceay/gomoku/blob/master/README.md) for more details.
  
+- **[Bubbl.ai: Capture, Connect, Converse](https://github.com/yamaceay/bubbl.ai)**  
+  Bubbl.ai is a platform designed to immortalize your thoughts and conversations. It allows you to save, organize, and share your ideas in dynamic "bubbles," connecting you with like-minded individuals and fostering meaningful discussions. For more details, see the [README.md](https://github.com/yamaceay/bubbl.ai/blob/master/README.md).
+
 - **[VecDB: Local Weaviate](https://github.com/yamaceay/vecDB)**  
   A lightweight, local vector database that uses SQL and vector embeddings for advanced data queries. It mirrors the functionality of Weaviate v3, and it’s great for handling text data with Sentence Transformers and OpenAI models.
 
