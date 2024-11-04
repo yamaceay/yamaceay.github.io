@@ -17,7 +17,12 @@ Below, you can find more about my background, projects, and interests.
 
 Currently, as a working student at **SAP AI Core**, I contribute to innovative software projects using technologies like LangChain, Docker, and Kubernetes. Before that, I worked at **SAP MDI** and **Scandio GmbH** as a working student with similar responsibilities.
 
-## Machine Learning & Beyond
+## Interests
+
+I won’t pretend that the latest hype in AI doesn’t captivate me. The rapidly evolving landscape of LLMs is fascinating, and I love keeping up with the newest trends, such as:
+
+- **Small Language Models**: Distilling the capabilities of LLMs into smaller, more efficient versions, democratizing access to powerful AI by making it feasible to deploy these models on a wide range of devices, from smartphones to edge computing platforms.
+- **Fine-Tuning of LLMs**: Customizing LLMs to perform exceptionally well on specific tasks. Challenging, but equally rewarding.
 
 While I engage in practical applications of LLMs and ML as needed, my real passion lies in the theory, for example, understanding:
 * how algorithms are structured,
