@@ -47,18 +47,26 @@ In fact, writing is a great way for me to dump my knowledge that I freshly acqui
 
 During my studies, I've had the opportunity to explore a wide range of topics in computer science, later specializing in AI and machine learning. Here are some of the courses I've taken:
 
-**MSc in Computer Science – TU Berlin (04/2024 - Ongoing)**
-- **Automatic Image Analysis**: Computer vision starting from the pure basics such as Hough Transform and ending with the latest deep learning models. *Grade: 1.3*
-- **Machine Learning in Neuroscience**: Exploring the intersection of AI and neuroscience, such as brain-computer interfaces, neuroimaging and encoder-decoder architectures. *Grade: 1.0*
+<details>
+  <summary><strong>MSc in Computer Science – TU Berlin (04/2024 - Ongoing)</strong></summary>
+  <ul>
+    <li><strong>Automatic Image Analysis</strong>: Computer vision starting from the pure basics such as Hough Transform and ending with the latest deep learning models. <em>Grade: 1.3</em></li>
+    <li><strong>Machine Learning in Neuroscience</strong>: Exploring the intersection of AI and neuroscience, such as brain-computer interfaces, neuroimaging and encoder-decoder architectures. <em>Grade: 1.0</em></li>
+  </ul>
+</details>
 
-**BSc in Computer Science – TU Berlin (11/2020 - 07/2024)**
-- **Bachelor Thesis: AlphaZero vs. MCTS: A Study on AI-based Game Strategy in Gomoku**: A comparative study on the performance of several AlphaZero variants and MCTS in Gomoku. *Grade: 1.3*
-- **Introduction to Artificial Intelligence**: Covering the theoretical foundations with a special focus on reinforcement learning. *Grade: 1.3*
-- **Agent Technologies: Foundations and Applications**: Course on multi-agent systems, game theory, and strategic decision-making. *Grade: 1.3*
-- **Information Systems and Data Analysis** *Grade: 1.0*
-- **Stochastics for Computer Science** *Grade: 1.0*
-- **Analysis I and Linear Algebra for Engineering Sciences** *Grade: 1.0*
-- **Analysis II for Engineering Sciences** *Grade: 1.7*
+<details>
+  <summary><strong>BSc in Computer Science – TU Berlin (11/2020 - 07/2024)</strong></summary>
+  <ul>
+    <li><strong>Bachelor Thesis: AlphaZero vs. MCTS: A Study on AI-based Game Strategy in Gomoku</strong>: A comparative study on the performance of several AlphaZero variants and MCTS in Gomoku. <em>Grade: 1.3</em></li>
+    <li><strong>Introduction to Artificial Intelligence</strong>: Covering the theoretical foundations with a special focus on reinforcement learning. <em>Grade: 1.3</em></li>
+    <li><strong>Agent Technologies: Foundations and Applications</strong>: Course on multi-agent systems, game theory, and strategic decision-making. <em>Grade: 1.3</em></li>
+    <li><strong>Information Systems and Data Analysis</strong> <em>Grade: 1.0</em></li>
+    <li><strong>Stochastics for Computer Science</strong> <em>Grade: 1.0</em></li>
+    <li><strong>Analysis I and Linear Algebra for Engineering Sciences</strong> <em>Grade: 1.0</em></li>
+    <li><strong>Analysis II for Engineering Sciences</strong> <em>Grade: 1.7</em></li>
+  </ul>
+</details>
 
 But my academic journey started long before university. I was fascinated by the world of mathematics, and I spent countless hours reading books, solving problems, and exploring new concepts.
 
