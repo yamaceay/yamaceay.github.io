@@ -76,6 +76,9 @@ Here are some of the AI-related projects I've worked on - nothing too polished, 
 
 - **[AlphaZero vs. MCTS: AI-based Game Strategy in Gomoku](https://github.com/yamaceay/gomoku)**  
   The source code for my Bachelor's thesis, which deals with AI strategies in Gomoku by comparing **AlphaZero** and **MCTS (Monte Carlo Tree Search)**. The project contains both theoretical and implementation details, and offers a playable AI-powered Gomoku game. See [README.md](https://github.com/yamaceay/gomoku/blob/master/README.md) for more details.
+
+- **[Simple K-Anonymizer](https://github.com/yamaceay/anon)**
+  A dynamic, privacy-focused text anonymizer that masks high-risk tokens until no entity can be re-identified in fewer than k guesses. Built on PETRE, it combines FAISS-based entity matching with SHAP explainability for efficient, explainable, scalable anonymization. For more details, see the [README.md](https://github.c om/yamaceay/anon/blob/master/README.md).
  
 - **[Bubbl.ai: Capture, Connect, Converse](https://github.com/yamaceay/bubbl.ai)**  
   Bubbl.ai is a platform designed to immortalize your thoughts and conversations. It allows you to save, organize, and share your ideas in dynamic "bubbles," connecting you with like-minded individuals and fostering meaningful discussions. For more details, see the [README.md](https://github.com/yamaceay/bubbl.ai/blob/master/README.md).
