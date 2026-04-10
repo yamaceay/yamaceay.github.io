@@ -319,6 +319,38 @@
       50%       { transform: rotate(45deg) translateY(5px); }
     }
 
+    /* ── Photos ── */
+    .hero-avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid var(--accent);
+      object-fit: cover; object-position: center 15%;
+      display: block; margin: 0 auto 1.8rem;
+      animation: fadeDown .7s ease both;
+      box-shadow: 0 0 0 7px rgba(88,166,255,.12), var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .hero-avatar:hover { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(88,166,255,.18), var(--shadow); }
+    .about-right { display: flex; flex-direction: column; gap: 1rem; }
+    .about-photo {
+      width: 100%; border-radius: var(--radius);
+      object-fit: cover; object-position: center 20%;
+      border: 1px solid var(--border);
+      max-height: 290px; display: block;
+      transition: transform .3s, border-color .3s;
+    }
+    .about-photo:hover { transform: scale(1.015); border-color: var(--accent); }
+    .contact-photo-wrap { text-align: center; margin-bottom: 2.5rem; }
+    .contact-photo {
+      width: 150px; height: 150px; border-radius: 50%;
+      object-fit: cover; object-position: center 30%;
+      border: 2px solid var(--border);
+      display: block; margin: 0 auto 1rem;
+      filter: grayscale(25%);
+      transition: filter .4s, border-color .3s, transform .3s;
+    }
+    .contact-photo:hover { filter: grayscale(0%); border-color: var(--accent); transform: scale(1.04); }
+    .contact-photo-caption { font-size: .78rem; color: var(--muted); font-style: italic; }
+
     /* ── Responsive ── */
     @media (max-width: 700px) {
       .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem; }
@@ -354,6 +386,7 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
+    <img src="photo_main.jpg" alt="Yamaç Eren Ay" class="hero-avatar" />
     <div class="hero-badge">&#x1F4CD; Berlin, Germany</div>
     <h1 class="hero-name">Yamaç Eren <span>Ay</span></h1>
     <div class="hero-typewriter">
@@ -399,6 +432,8 @@
         <p>My research sits at the intersection of <strong>privacy-preserving machine learning</strong>, <strong>small language models</strong>, and <strong>agentic systems</strong>. I'm drawn to the elegant math behind ML, and I believe the most impactful AI is small, auditable, and private.</p>
         <p>Alongside my studies, I've worked as a software engineering working student — two years at <strong>HiQ Germany</strong> on backend and DevOps, and two years at <strong>SAP</strong> building AI infrastructure at scale. I also write on Medium, contribute to open source, and compete on Kaggle.</p>
       </div>
+      <div class="about-right">
+      <img src="photo_about.jpg" alt="Yamaç in Berlin" class="about-photo" />
       <div class="about-stats">
         <div class="stat-card">
           <div class="stat-num">50+</div>
@@ -417,6 +452,7 @@
           <div class="stat-label">Languages spoken</div>
         </div>
       </div>
+      </div><!-- /.about-right -->
     </div>
   </div>
 </section>
@@ -713,6 +749,10 @@
   <div class="container">
     <p class="section-label reveal" style="text-align:center">// contact</p>
     <h2 class="section-title reveal" style="text-align:center">Get In <span>Touch</span></h2>
+    <div class="contact-photo-wrap reveal">
+      <img src="photo_fun.jpg" alt="Yamaç" class="contact-photo" />
+      <p class="contact-photo-caption">When I'm not at a keyboard, I'm probably here.</p>
+    </div>
     <div class="contact-box reveal">
       <h3>Let's talk research, AI, or anything in between</h3>
       <p>Whether you're a collaborator, a recruiter, or just curious about my work — my inbox is open.</p>
