@@ -319,9 +319,36 @@
       50%       { transform: rotate(45deg) translateY(5px); }
     }
 
+    /* ── Grades ── */
+    #grades { background: var(--bg2); }
+    .grade-system-note { font-size: .82rem; color: var(--muted); margin-bottom: 1.8rem; font-family: var(--mono); }
+    .grade-tabs { display: flex; gap: .6rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
+    .grade-tab {
+      font-family: var(--mono); font-size: .8rem; font-weight: 600;
+      padding: .5rem 1.2rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg3);
+      color: var(--muted); cursor: pointer; transition: all .2s;
+    }
+    .grade-tab.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .grade-tab:hover:not(.active) { border-color: var(--accent); color: var(--text); }
+    .grade-chart { display: flex; flex-direction: column; gap: .55rem; }
+    .grade-row { display: grid; grid-template-columns: 220px 1fr 52px; align-items: center; gap: 1rem; }
+    .grade-name { font-size: .8rem; color: var(--muted); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .grade-bar-wrap { height: 22px; background: var(--bg3); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+    .grade-bar { height: 100%; border-radius: 4px; transition: width .9s cubic-bezier(.4,0,.2,1); }
+    .grade-val { font-family: var(--mono); font-size: .78rem; color: var(--muted); text-align: right; }
+    .grade-divider { height: 1px; background: var(--border); margin: .4rem 0; opacity: .5; }
+    .grade-legend { display: flex; gap: 1.4rem; flex-wrap: wrap; margin-top: 1.4rem; }
+    .gleg { display: flex; align-items: center; gap: .45rem; font-size: .76rem; color: var(--muted); font-family: var(--mono); }
+    .gleg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    @media (max-width: 600px) {
+      .grade-row { grid-template-columns: 130px 1fr 40px; gap: .5rem; }
+      .grade-name { font-size: .72rem; }
+    }
+
     /* ── Photos ── */
     .hero-avatar {
-      width: 120px; height: 120px; border-radius: 50%;
+      width: 120px; height: 160px; border-radius: 50%;
       border: 3px solid var(--accent);
       object-fit: cover; object-position: center 15%;
       display: block; margin: 0 auto 1.8rem;
@@ -335,21 +362,32 @@
       width: 100%; border-radius: var(--radius);
       object-fit: cover; object-position: center 20%;
       border: 1px solid var(--border);
-      max-height: 290px; display: block;
+      max-height: 39vh; display: block;
       transition: transform .3s, border-color .3s;
     }
     .about-photo:hover { transform: scale(1.015); border-color: var(--accent); }
-    .contact-photo-wrap { text-align: center; margin-bottom: 2.5rem; }
-    .contact-photo {
-      width: 150px; height: 150px; border-radius: 50%;
-      object-fit: cover; object-position: center 30%;
-      border: 2px solid var(--border);
-      display: block; margin: 0 auto 1rem;
-      filter: grayscale(25%);
-      transition: filter .4s, border-color .3s, transform .3s;
+    .beyond-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 3rem; }
+    .beyond-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); position: relative;
+      aspect-ratio: 4/3;
+      transition: border-color .25s, transform .25s;
     }
-    .contact-photo:hover { filter: grayscale(0%); border-color: var(--accent); transform: scale(1.04); }
-    .contact-photo-caption { font-size: .78rem; color: var(--muted); font-style: italic; }
+    .beyond-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .beyond-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      filter: grayscale(15%) brightness(.92);
+      transition: filter .4s, transform .4s;
+    }
+    .beyond-card:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.04); }
+    .beyond-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: .6rem 1rem;
+      background: linear-gradient(transparent, rgba(13,17,23,.85));
+      font-size: .78rem; color: var(--text); font-family: var(--mono);
+    }
+    @media (max-width: 500px) { .beyond-strip { grid-template-columns: 1fr; } }
 
     /* ── Responsive ── */
     @media (max-width: 700px) {
@@ -373,6 +411,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#grades">Grades</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -393,8 +432,8 @@
       <span id="typewriter"></span><span class="cursor"></span>
     </div>
     <p class="hero-desc">
-      Computer scientist and software developer at TU Berlin, with a focus on AI, machine learning,
-      and building real-world systems that are efficient, private, and useful.
+      In the daytime: Software developer, studying Computer Science at TU Berlin with a focus on AI, machine learning,
+      and building real-world systems that are efficient, private, and useful. In the night: occasional writer, guitar player, and sports enthusiast.
     </p>
     <div class="hero-socials">
       <a href="https://linkedin.com/in/yamaceay" class="social-btn" target="_blank" rel="noopener">
@@ -436,16 +475,16 @@
       <img src="photo_about.jpg" alt="Yamaç in Berlin" class="about-photo" />
       <div class="about-stats">
         <div class="stat-card">
-          <div class="stat-num">50+</div>
-          <div class="stat-label">Medium articles published</div>
-        </div>
-        <div class="stat-card">
           <div class="stat-num">4yr</div>
-          <div class="stat-label">Industry ML experience</div>
+          <div class="stat-label">Industry experience in software & AI</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">1.3</div>
-          <div class="stat-label">B.Sc. thesis grade (out of 1.0)</div>
+          <div class="stat-num">2</div>
+          <div class="stat-label">h-index</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Cities called home — Bursa, Istanbul, Berlin</div>
         </div>
         <div class="stat-card">
           <div class="stat-num">4</div>
@@ -714,6 +753,26 @@
   </div>
 </section>
 
+<!-- ── Grades ── -->
+<section id="grades">
+  <div class="container">
+    <p class="section-label reveal">// academic performance</p>
+    <h2 class="section-title reveal">Courses & <span>Grades</span></h2>
+    <p class="grade-system-note reveal">German grading scale &mdash; 1.0 is the highest possible grade, 4.0 is the minimum passing grade. Longer bar = better grade.</p>
+    <div class="grade-tabs reveal">
+      <button class="grade-tab active" data-tab="master">M.Sc. — TU Berlin (ongoing)</button>
+      <button class="grade-tab" data-tab="bachelor">B.Sc. — TU Berlin (2020–2024)</button>
+    </div>
+    <div id="grade-chart" class="grade-chart reveal"></div>
+    <div class="grade-legend reveal">
+      <span class="gleg"><span class="gleg-dot" style="background:#3fb950"></span>1.0–1.5 · sehr gut</span>
+      <span class="gleg"><span class="gleg-dot" style="background:#58a6ff"></span>1.6–2.5 · gut</span>
+      <span class="gleg"><span class="gleg-dot" style="background:#ffa657"></span>2.6–3.5 · befriedigend</span>
+      <span class="gleg"><span class="gleg-dot" style="background:#f85149"></span>3.6–4.0 · ausreichend</span>
+    </div>
+  </div>
+</section>
+
 <!-- ── Blog ── -->
 <section id="blog">
   <div class="container">
@@ -749,12 +808,18 @@
   <div class="container">
     <p class="section-label reveal" style="text-align:center">// contact</p>
     <h2 class="section-title reveal" style="text-align:center">Get In <span>Touch</span></h2>
-    <div class="contact-photo-wrap reveal">
-      <img src="photo_fun.jpg" alt="Yamaç" class="contact-photo" />
-      <p class="contact-photo-caption">When I'm not at a keyboard, I'm probably here.</p>
+    <div class="beyond-strip reveal">
+      <div class="beyond-card">
+        <img src="photo_guitar.jpg" alt="Yamaç playing guitar" />
+        <div class="beyond-label">🎸 &nbsp;Live at a Berlin bar</div>
+      </div>
+      <div class="beyond-card">
+        <img src="photo_handstand.jpg" alt="Yamaç doing a handstand" />
+        <div class="beyond-label">🤸 &nbsp;Capoeira in my free time</div>
+      </div>
     </div>
     <div class="contact-box reveal">
-      <h3>Let's talk research, AI, or anything in between</h3>
+      <h3>Let's have a chat</h3>
       <p>Whether you're a collaborator, a recruiter, or just curious about my work — my inbox is open.</p>
       <a href="mailto:yamaceay@gmail.com" class="contact-email">yamaceay@gmail.com</a>
       <div class="contact-socials">
@@ -769,6 +834,10 @@
         <a href="https://kaggle.com/yamaerenay" class="social-btn" target="_blank">
           <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.336z"/></svg>
           Kaggle
+        </a>
+        <a href="https://www.instagram.com/yamaceay" class="social-btn" target="_blank">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg>
+          Instagram
         </a>
       </div>
     </div>
@@ -826,6 +895,100 @@
   const navLinks = document.getElementById('navLinks');
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ── Grades chart ──
+  // Grade data loaded directly from bachelor_notes.csv and master_notes.csv
+  // Entries with grade '*' (pass/no grade) are excluded
+  const gradeData = {
+    master: [
+      { name: 'Machine Learning in Neuroscience',              grade: 1.0, lp: 3  },
+      { name: 'Algebraic Process Calculi',                     grade: 1.0, lp: 6  },
+      { name: 'Natural Language Processing in Humans & Machines', grade: 1.0, lp: 3 },
+      { name: 'Psychologie für Ingenieure und Ingenieurinnen', grade: 1.3, lp: 6  },
+      { name: 'Models of Higher Brain Functions',              grade: 1.3, lp: 12 },
+      { name: 'Automatic Image Analysis',                      grade: 1.3, lp: 6  },
+      { name: 'Optimization Algorithms',                       grade: 1.7, lp: 6  },
+      { name: 'Kausale Inferenz',                              grade: 1.7, lp: 6  },
+      { name: 'Deep Learning 2',                               grade: 1.7, lp: 6  },
+      { name: 'Study Project Quality & Usability',             grade: 1.7, lp: 9  },
+      { name: 'Machine Intelligence I',                        grade: 2.0, lp: 6  },
+      { name: 'Machine Intelligence II',                       grade: 2.3, lp: 6  },
+      { name: 'Foundations of Stochastic Processes',           grade: 2.7, lp: 6  },
+      { name: 'Modelle zur Informationsverarbeitung im Gehirn',grade: 3.0, lp: 6  },
+    ],
+    bachelor: [
+      { name: 'Informatik Propädeutikum',                           grade: 1.0, lp: 3  },
+      { name: 'Informationssysteme und Datenanalyse',               grade: 1.0, lp: 6  },
+      { name: 'Stochastik für Informatik',                          grade: 1.0, lp: 9  },
+      { name: 'Analysis I und Lineare Algebra',                     grade: 1.0, lp: 12 },
+      { name: 'Continuous Software Engineering',                    grade: 1.0, lp: 6  },
+      { name: 'AlphaZero vs. MCTS — Bachelorarbeit',               grade: 1.3, lp: 12 },
+      { name: 'Agententechnologien: Grundlagen und Anwendungen',    grade: 1.3, lp: 6  },
+      { name: 'Lambda-Kalkül und Typ-Systeme',                     grade: 1.3, lp: 6  },
+      { name: 'Ausgewählte Themen: Algorithmen und Datenstrukturen',grade: 1.3, lp: 3  },
+      { name: 'Einführung in die Künstliche Intelligenz',           grade: 1.3, lp: 6  },
+      { name: 'Systemprogrammierung',                               grade: 1.7, lp: 6  },
+      { name: 'Algorithmen und Datenstrukturen',                    grade: 1.7, lp: 6  },
+      { name: 'Verteilte Systeme',                                  grade: 1.7, lp: 6  },
+      { name: 'Algorithmentheorie',                                 grade: 1.7, lp: 6  },
+      { name: 'Analysis II für Ingenieurwissenschaften',            grade: 1.7, lp: 9  },
+      { name: 'Rechnerorganisation',                                grade: 2.0, lp: 6  },
+      { name: 'Wissenschaftliches Rechnen',                         grade: 2.0, lp: 6  },
+      { name: 'Kognitive Algorithmen',                              grade: 2.0, lp: 6  },
+      { name: 'Einführung in die Programmierung',                   grade: 2.3, lp: 6  },
+      { name: 'Künstliche Intelligenz: Grundlagen und Anwendungen', grade: 2.7, lp: 6  },
+      { name: 'Informatik und Gesellschaft',                        grade: 2.7, lp: 6  },
+      { name: 'Rechnernetze und Verteilte Systeme',                 grade: 3.0, lp: 6  },
+      { name: 'Softwaretechnik und Programmierparadigmen',          grade: 3.0, lp: 6  },
+      { name: 'Formale Sprachen und Automaten',                     grade: 3.0, lp: 6  },
+      { name: 'Diskrete Strukturen',                                grade: 3.7, lp: 6  },
+      { name: 'Berechenbarkeit und Komplexität',                    grade: 4.0, lp: 6  },
+      { name: 'Logik',                                              grade: 4.0, lp: 6  },
+    ]
+  };
+
+  function gradeColor(g) {
+    if (g <= 1.5) return '#3fb950';
+    if (g <= 2.5) return '#58a6ff';
+    if (g <= 3.5) return '#ffa657';
+    return '#f85149';
+  }
+
+  function barWidth(g) {
+    // 1.0 → 100%, 4.0 → 15% (we keep a small min so bars always show)
+    return Math.max(15, Math.round(((4.5 - g) / 3.5) * 100));
+  }
+
+  function renderGrades(tab) {
+    const courses = gradeData[tab];
+    const chart = document.getElementById('grade-chart');
+    chart.innerHTML = courses.map((c, i) => `
+      <div class="grade-row" style="animation-delay:${i * 30}ms">
+        <div class="grade-name" title="${c.name}">${c.name}</div>
+        <div class="grade-bar-wrap">
+          <div class="grade-bar" data-w="${barWidth(c.grade)}"
+               style="width:0%;background:${gradeColor(c.grade)}"></div>
+        </div>
+        <div class="grade-val" style="color:${gradeColor(c.grade)}">${c.grade.toFixed(1)}</div>
+      </div>
+    `).join('');
+    // Animate bars after a tick so transition fires
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      chart.querySelectorAll('.grade-bar').forEach(b => {
+        b.style.width = b.dataset.w + '%';
+      });
+    }));
+  }
+
+  renderGrades('master');
+
+  document.querySelectorAll('.grade-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.grade-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGrades(btn.dataset.tab);
+    });
+  });
 
   // Active nav highlight on scroll
   const sections = document.querySelectorAll('section[id]');
