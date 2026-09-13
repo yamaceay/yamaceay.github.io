@@ -1,0 +1,364 @@
+# ─────────────────────────────────────────────────────────────
+# Single source of truth for everything on index.html.
+# Edit this file to change any text, link, date, grade, project,
+# etc. shown on the site — index.html just loops over this data.
+# ─────────────────────────────────────────────────────────────
+
+meta:
+  title: "Yamaç Eren Ay"
+  description: "Yamaç Eren Ay. Software Developer / Machine Learning Engineer."
+  brand: "yamaceay.github.io"
+
+footer_text: "Built by Yamaç Eren Ay · Berlin, 2026"
+
+nav:
+  - label: About
+    href: "#about"
+  - label: Research
+    href: "#research"
+  - label: Experience
+    href: "#experience"
+  - label: Skills
+    href: "#skills"
+  - label: Grades
+    href: "#grades"
+  - label: Blog
+    href: "#blog"
+  - label: Contact
+    href: "#contact"
+  - label: CV
+    href: "cv.html"
+
+# Every social/profile link on the site, keyed by id. Referenced
+# by id (not repeated) from hero.social_ids and contact.social_ids.
+socials:
+  linkedin:
+    name: LinkedIn
+    url: "https://linkedin.com/in/yamaceay"
+  github:
+    name: GitHub
+    url: "https://github.com/yamaceay"
+  medium:
+    name: Medium
+    url: "https://medium.com/@yamaceay"
+  kaggle:
+    name: Kaggle
+    url: "https://kaggle.com/yamaerenay"
+  instagram:
+    name: Instagram
+    url: "https://www.instagram.com/yamaceay"
+  pwncollege:
+    name: pwn.college
+    url: "https://pwn.college/hacker/176715"
+
+hero:
+  avatar: photo_main.jpg
+  avatar_alt: "Yamaç Eren Ay"
+  badge: "📍 Berlin, Germany"
+  name_main: "Yamaç Eren"
+  name_accent: "Ay"
+  # Rotating typewriter phrases (hero subtitle)
+  phrases:
+    - "BSc & MSc CS Graduate @ TU Berlin"
+    - "Software Developer @ SAP AI Core"
+    - "Learning Cybersecurity @ pwn.college"
+  description: "Software developer and machine learning engineer."
+  social_ids: [linkedin, github, medium, kaggle, instagram, pwncollege]
+  cv_label: "View Full CV"
+  cv_href: "cv.html"
+
+about:
+  label: "// about me"
+  title_main: "Who I Am"
+  title_accent: "& What I Do"
+  photo: photo_about.jpg
+  photo_alt: "Yamaç in Berlin"
+  paragraphs:
+    - "I'm <strong>Yamaç</strong>, a software engineer based in Berlin, originally from Türkiye. I moved to Berlin in 2020 to study computer science."
+    - "I hold a <strong>B.Sc. and M.Sc. in Computer Science</strong> from TU Berlin. Across both, my coursework centered on <strong>machine learning</strong>, <strong>neuroscience-inspired computing</strong>, and <strong>privacy-preserving AI</strong>."
+
+experience:
+  label: "// experience"
+  title_main: "Where I've"
+  title_accent: "Worked"
+  items:
+    - dot: "blue"
+      period: "10/2026 - present &nbsp;·&nbsp; Potsdam, Germany"
+      role: "Developer Associate"
+      place: "SAP AI Core, SAP Business AI"
+      desc: "SAP AI Python SDK development, with integrations for LLM gateways and orchestration services."
+      cv:
+        logo: sap_logo.jpeg
+        desc: "Official AI Core Python SDK team for SAP Business AI."
+        contact: {name: "Andreas Joebges", email: "andreas.joebges@sap.com"}
+    - dot: ""
+      period: "10/2024 - 09/2026 &nbsp;·&nbsp; Potsdam, Germany"
+      role: "Working Student Software Developer"
+      place: "SAP AI Core, SAP Business AI"
+      desc: "AI runtime infrastructure and lifecycle management for AI assets on SAP BTP."
+      cv:
+        logo: sap_logo.jpeg
+        desc: "A service within SAP BTP designed to manage the lifecycle of AI assets."
+        tags: [Python, Go, TypeScript, Edge AI, LLMs, AI Agents, Big Data, Kubernetes, Crossplane]
+        contact: {name: "Sander Wozniak", email: "sander.wozniak@sap.com"}
+    - dot: "green"
+      period: "02/2024 - 09/2024 &nbsp;·&nbsp; Potsdam, Germany"
+      role: "Working Student Cloud-Native Developer"
+      place: "SAP Master Data Integration"
+      desc: "Master data synchronization across SAP solutions."
+      cv:
+        logo: sap_logo.jpeg
+        desc: "A cloud service that synchronizes master data across SAP solutions."
+        tags: [LangChain, Docker, Kubernetes, ReasonML, TypeScript]
+        contact: {name: "Sander Wozniak", email: "sander.wozniak@sap.com"}
+    - dot: "purple"
+      period: "06/2022 - 01/2024 &nbsp;·&nbsp; Berlin, Germany"
+      role: "Working Student Software Engineer / IT Consultant"
+      place: "HiQ Germany (formerly Scandio GmbH)"
+      desc: "Full-stack and backend development for digitalization projects."
+      cv:
+        logo: hiq_germany_logo.jpeg
+        desc: '"We digitalize products, processes and organizations." Full-stack and backend development, DevOps.'
+        tags: [Go, Python, JavaScript, Docker, Kubernetes]
+
+education:
+  label: "// education"
+  title_main: "Academic"
+  title_accent: "Background"
+  items:
+    - dot: ""
+      period: "04/2024 - 07/2026 &nbsp;·&nbsp; TU Berlin"
+      role: "M.Sc. Computer Science"
+      place: "Grade: 1.2"
+      desc: "Science of Intelligence Master Track, Berlin University Alliance. Thesis: \"Towards Efficient Text Anonymization Using Differential Privacy and Re-identification Risk-based Explainability.\""
+      cv:
+        logo: tuberlin_logo.jpeg
+        institution: "Technische Universität Berlin"
+        location: "Berlin, Germany"
+        desc_lines:
+          - "Science of Intelligence Master Track &middot; Berlin University Alliance. Specialization in foundations of ML and neuroscience."
+          - "<strong>Thesis (1.0):</strong> \"Towards Efficient Text Anonymization Using Differential Privacy and Re-identification Risk-based Explainability\". Conducted in partnership with <a href=\"https://www.dfki.de/\" target=\"_blank\" rel=\"noopener\"><strong>DFKI</strong></a>."
+        tags: ["Advanced Deep Learning", "Machine Intelligence I & II", "Computer Vision", "Causal Inference", "NLP in Humans & Machines"]
+    - dot: "green"
+      period: "11/2020 - 07/2024 &nbsp;·&nbsp; TU Berlin"
+      role: "B.Sc. Computer Science"
+      place: "Grade: 1.9"
+      desc: 'Thesis: "AlphaZero vs. MCTS: A Study on AI-based Game Strategy in Gomoku."'
+      cv:
+        logo: tuberlin_logo.jpeg
+        institution: "Technische Universität Berlin"
+        location: "Berlin, Germany"
+        desc_lines:
+          - "Theory-intensive curriculum with AI/ML electives."
+          - "<strong>Thesis (1.3):</strong> \"AlphaZero vs. MCTS: A Study on AI-based Game Strategy in Gomoku\"."
+        tags: ["System Programming", "Theoretical Informatics", "Artificial Intelligence", "Stochastics", "Algorithms & Data Structures"]
+    - dot: "purple"
+      period: "09/2015 - 06/2020 &nbsp;·&nbsp; Istanbul, Türkiye"
+      role: "Abitur (German High School Diploma)"
+      place: "Istanbul Erkek Lisesi"
+      desc: "Full German-language curriculum; German university entrance qualification."
+      cv:
+        logo: istanbul_erkek_lisesi_logo.jpeg
+        institution: "Istanbul Erkek Lisesi"
+        location: "Istanbul, Türkiye"
+        desc_lines:
+          - "Gymnasium with full German-language curriculum. Graduated with German university entrance qualification."
+
+research:
+  label: "// research"
+  title_main: "Research"
+  title_accent: "& Security"
+  items:
+    - title: "Towards Efficient Text Anonymization Using Differential Privacy and Re-identification Risk-based Explainability"
+      meta: "MSc Thesis &nbsp;·&nbsp; TU Berlin, Q&amp;U Lab &nbsp;·&nbsp; 2026"
+      desc: "Privacy-preserving NLP using explainability methods and PII classification to reduce re-identification risk in text datasets while preserving utility. Trained transformer models on <a href=\"https://www.dfki.de/\" target=\"_blank\" rel=\"noopener\">DFKI</a> clusters and analyzed privacy-utility trade-offs."
+      tags:
+        - {label: "Differential Privacy", color: blue}
+        - {label: "Text Anonymization", color: green}
+        - {label: "Explainability", color: purple}
+        - {label: "PyTorch", color: orange}
+        - {label: "HuggingFace", color: blue}
+    - title: "Text Anonymization Meets Explainability"
+      meta: "Advanced Master's Project &nbsp;·&nbsp; TU Berlin &nbsp;·&nbsp; 2025"
+      desc: "Earlier work on SLM-based text privacy with a medical dataset. Developed attacker models, privacy-utility benchmarks, and explored anonymization methods building on PETRE and FAISS-based entity matching with SHAP explainability."
+      tags:
+        - {label: "Medical NLP", color: green}
+        - {label: "SHAP", color: blue}
+        - {label: "Small Language Models", color: purple}
+        - {label: "FAISS", color: orange}
+    - title: "AlphaZero vs. MCTS: A Study on AI-based Game Strategy in Gomoku"
+      meta: "BSc Thesis &nbsp;·&nbsp; TU Berlin &nbsp;·&nbsp; 2024"
+      desc: "Compared AlphaZero variants and Monte Carlo Tree Search in Gomoku, with theory, implementation, and a playable AI-powered game."
+      tags:
+        - {label: "Reinforcement Learning", color: blue}
+        - {label: "Monte Carlo Tree Search", color: green}
+        - {label: "Game AI", color: purple}
+      link: {label: "View on GitHub", url: "https://github.com/yamaceay/gomoku"}
+  interests:
+    label: "Research Interests"
+    columns:
+      - title: "Machine Learning"
+        quote: "Not every model is correct, but some are useful."
+        tags:
+          - {label: "Small Language Models", color: blue}
+          - {label: "Privacy-Preserving AI", color: green}
+          - {label: "Neuroscience", color: purple}
+          - {label: "Models of Higher Brain Functions", color: orange}
+          - {label: "Optimization Algorithms", color: blue}
+      - title: "Cybersecurity"
+        quote: "Everything is open source if you can reverse-engineer it."
+        tags:
+          - {label: "Intro to Cybersecurity 🛡️", color: blue}
+          - {label: "Linux Luminarium 🐧", color: green}
+          - {label: "Computing 101 💻", color: purple}
+          - {label: "Playing With Programs 🔤", color: orange}
+        link: {label: "pwn.college/hacker/176715", url: "https://pwn.college/hacker/176715"}
+
+skills:
+  label: "// skills"
+  title_main: "Technical"
+  title_accent: "Stack"
+  groups:
+    - title: "Languages"
+      items: [Python, Go, TypeScript, Bash]
+    - title: "ML / AI"
+      items: [PyTorch, HuggingFace Transformers, LangChain, Differential Privacy]
+    - title: "Infrastructure"
+      items: [Kubernetes, Docker, SAP BTP, Kali Linux, Ubuntu Linux]
+
+grades:
+  label: "// academic performance"
+  title_main: "Courses &"
+  title_accent: "Grades"
+  note: "German grading scale - 1.0 is the highest possible grade, 4.0 is the minimum passing grade. Longer bar = better grade."
+  tabs:
+    - key: master
+      label: "M.Sc. — TU Berlin (2024-2026)"
+    - key: bachelor
+      label: "B.Sc. — TU Berlin (2020-2024)"
+  legend:
+    - {color: "#3fb950", label: "1.0-1.5 · sehr gut"}
+    - {color: "#58a6ff", label: "1.6-2.5 · gut"}
+    - {color: "#ffa657", label: "2.6-3.5 · befriedigend"}
+    - {color: "#f85149", label: "3.6-4.0 · ausreichend"}
+  # Curated from bachelor_notes.csv / master_notes.csv — entries
+  # graded '*' (pass/no grade) are intentionally excluded.
+  master:
+    - {name: "Thesis - Towards Efficient Text Anonymization Using Differential Privacy and Re-identification Risk-based Explainability", grade: 1.0, lp: 30}
+    - {name: "Machine Learning in Neuroscience",                  grade: 1.0, lp: 3}
+    - {name: "Algebraic Process Calculi",                         grade: 1.0, lp: 6}
+    - {name: "Natural Language Processing in Humans & Machines",  grade: 1.0, lp: 3}
+    - {name: "Psychologie für Ingenieure und Ingenieurinnen",     grade: 1.3, lp: 6}
+    - {name: "Models of Higher Brain Functions",                  grade: 1.3, lp: 12}
+    - {name: "Automatic Image Analysis",                          grade: 1.3, lp: 6}
+    - {name: "Optimization Algorithms",                           grade: 1.7, lp: 6}
+    - {name: "Kausale Inferenz",                                  grade: 1.7, lp: 6}
+    - {name: "Deep Learning 2",                                   grade: 1.7, lp: 6}
+    - {name: "Study Project Quality & Usability",                 grade: 1.7, lp: 9}
+    - {name: "Machine Intelligence I",                            grade: 2.0, lp: 6}
+    - {name: "Machine Intelligence II",                           grade: 2.3, lp: 6}
+    - {name: "Foundations of Stochastic Processes",               grade: 2.7, lp: 6}
+    - {name: "Modelle zur Informationsverarbeitung im Gehirn",    grade: 3.0, lp: 6}
+  bachelor:
+    - {name: "Informatik Propädeutikum",                              grade: 1.0, lp: 3}
+    - {name: "Informationssysteme und Datenanalyse",                  grade: 1.0, lp: 6}
+    - {name: "Stochastik für Informatik",                             grade: 1.0, lp: 9}
+    - {name: "Analysis I und Lineare Algebra",                        grade: 1.0, lp: 12}
+    - {name: "Continuous Software Engineering",                       grade: 1.0, lp: 6}
+    - {name: "Thesis - AlphaZero gegen MCTS: Eine Studie zur KI-basierten Spielstrategie in Gomoku",                  grade: 1.3, lp: 12}
+    - {name: "Agententechnologien: Grundlagen und Anwendungen",       grade: 1.3, lp: 6}
+    - {name: "Lambda-Kalkül und Typ-Systeme",                        grade: 1.3, lp: 6}
+    - {name: "Ausgewählte Themen: Algorithmen und Datenstrukturen",   grade: 1.3, lp: 3}
+    - {name: "Einführung in die Künstliche Intelligenz",              grade: 1.3, lp: 6}
+    - {name: "Systemprogrammierung",                                  grade: 1.7, lp: 6}
+    - {name: "Algorithmen und Datenstrukturen",                       grade: 1.7, lp: 6}
+    - {name: "Verteilte Systeme",                                     grade: 1.7, lp: 6}
+    - {name: "Algorithmentheorie",                                    grade: 1.7, lp: 6}
+    - {name: "Analysis II für Ingenieurwissenschaften",               grade: 1.7, lp: 9}
+    - {name: "Rechnerorganisation",                                   grade: 2.0, lp: 6}
+    - {name: "Wissenschaftliches Rechnen",                            grade: 2.0, lp: 6}
+    - {name: "Kognitive Algorithmen",                                 grade: 2.0, lp: 6}
+    - {name: "Einführung in die Programmierung",                      grade: 2.3, lp: 6}
+    - {name: "Künstliche Intelligenz: Grundlagen und Anwendungen",    grade: 2.7, lp: 6}
+    - {name: "Informatik und Gesellschaft",                           grade: 2.7, lp: 6}
+    - {name: "Rechnernetze und Verteilte Systeme",                    grade: 3.0, lp: 6}
+    - {name: "Softwaretechnik und Programmierparadigmen",             grade: 3.0, lp: 6}
+    - {name: "Formale Sprachen und Automaten",                        grade: 3.0, lp: 6}
+    - {name: "Diskrete Strukturen",                                   grade: 3.7, lp: 6}
+    - {name: "Berechenbarkeit und Komplexität",                       grade: 4.0, lp: 6}
+    - {name: "Logik",                                                 grade: 4.0, lp: 6}
+
+blog:
+  label: "// writing"
+  title_main: "From the"
+  title_accent: "Blog"
+  posts:
+    - tag: Theory
+      title: "Memory in Various Contexts"
+      url: "https://medium.com/the-quantastic-journal/weirdest-explanation-of-memory-727147f14ac9"
+      excerpt: "An unconventional take on memory — bridging cognitive science, information theory, and machine learning."
+    - tag: Math
+      title: "Game Theory for Dummies"
+      url: "https://pub.aimind.so/game-theory-for-dummies-433bc319f7e5"
+      excerpt: "Breaking down Nash equilibria, dominant strategies, and strategic decision-making for the curious mind."
+    - tag: Statistics
+      title: "Statistical Tests Simplified"
+      url: "https://yamaceay.medium.com/statistical-tests-simplified-100bf655f482"
+      excerpt: "A clean, intuitive guide to choosing and interpreting the right statistical test for your data."
+  more:
+    tag: "50+ Articles"
+    desc: "Theory-driven perspectives on AI, algorithms, and mathematics — written to clarify complexity, not hide it."
+    label: "Read all on Medium →"
+    url: "https://medium.com/@yamaceay"
+
+contact:
+  label: "// contact"
+  title_main: "Get In"
+  title_accent: "Touch"
+  beyond:
+    - img: photo_guitar.jpg
+      alt: "Yamaç playing guitar"
+      label: "🎸 &nbsp;Live at a bar"
+    - img: photo_handstand.jpg
+      alt: "Yamaç doing a handstand"
+      label: "🤸 &nbsp;Capoeira in my free time"
+  heading: "Get in touch"
+  social_ids: [linkedin, github, kaggle, medium]
+
+# Everything on cv.html that isn't already shared with index.html
+# (experience/education/socials are reused from above).
+cv:
+  title: "Software Engineer / Computer Scientist"
+  subtitle: "Specialized in Machine Learning and Neuroscience"
+  contact:
+    email: "yamacerenay2001@gmail.com"
+    location: "13347 Berlin, Deutschland"
+    website: {label: "yamaceay.github.io", url: "https://yamaceay.github.io"}
+  languages:
+    - {name: German, pct: 80}
+    - {name: English, pct: 80}
+    - {name: Turkish, pct: 100}
+    - {name: Spanish, pct: 40}
+  certifications:
+    - name: "Data or Specimens Only Research"
+      meta: "05/2025 - 05/2028"
+      link: {label: "Verify credential →", url: "https://www.citiprogram.org/verify/?we6b33b1a-42ec-4fd2-976e-d4cfdbf4d203-69398310"}
+    - name: 'Winter School "Ethics of Neuroscience and AI"'
+      meta: "04/2025"
+      link: {label: "View →", url: "http://bit.ly/4tBSn3Q"}
+    - name: "IBM Data Science"
+      meta: "10/2021"
+      link: {label: "Verify credential →", url: "https://credentials.edx.org/credentials/bc8b67e5b25c4ab6a282a074e87b73a8/"}
+  achievements:
+    - name: "Kaggle Datasets and Notebooks Expert"
+      link: {label: "kaggle.com/yamaerenay →", url: "https://www.kaggle.com/yamaerenay"}
+    - name: "Medium Writer (50+ articles)"
+      link: {label: "medium.com/@yamaceay →", url: "https://medium.com/@yamaceay"}
+    - name: "pwn.college CTF Challenges"
+      link: {label: "pwn.college/hacker/176715 →", url: "https://pwn.college/hacker/176715"}
+  interests:
+    - {emoji: "🎸", label: "Guitar"}
+    - {emoji: "💻", label: "Open Source"}
+    - {emoji: "🤸", label: "Sports"}
+    - {emoji: "🔒", label: "Cybersecurity"}
+  footer: "Yamaç Eren Ay · Berlin, 2026"
