@@ -1,10 +1,14 @@
+---
+---
+{% assign s = site.data.site %}
+{% assign tag_colors = "tag-blue,tag-green,tag-purple,tag-orange" | split: "," %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yamaç Eren Ay — CV</title>
-  <meta name="description" content="Curriculum Vitae — Yamaç Eren Ay. Computer Science M.Sc. candidate at TU Berlin, specialized in Machine Learning and Neuroscience." />
+  <title>{{ s.meta.title }} — CV</title>
+  <meta name="description" content="Curriculum Vitae — {{ s.meta.title }}. {{ s.cv.title }}, {{ s.cv.subtitle }}." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -254,21 +258,21 @@
 
   <!-- ── Header ── -->
   <div class="cv-header">
-    <img src="photo_main.jpg" alt="Yamaç Eren Ay" class="cv-avatar" />
+    <img src="{{ s.hero.avatar }}" alt="{{ s.hero.avatar_alt }}" class="cv-avatar" />
     <div>
-      <div class="cv-name">Yamaç Eren <span>Ay</span></div>
-      <div class="cv-title">Software Engineer / Computer Scientist</div>
-      <div class="cv-subtitle">Specialized in Machine Learning and Neuroscience</div>
+      <div class="cv-name">{{ s.hero.name_main }} <span>{{ s.hero.name_accent }}</span></div>
+      <div class="cv-title">{{ s.cv.title }}</div>
+      <div class="cv-subtitle">{{ s.cv.subtitle }}</div>
     </div>
   </div>
 
   <div class="cv-contact">
-    <a href="mailto:yamacerenay2001@gmail.com">&#9993; yamacerenay2001@gmail.com</a>
-    <span>&#128205; 13347 Berlin, Deutschland</span>
-    <a href="https://yamaceay.github.io" target="_blank" rel="noopener">&#127760; yamaceay.github.io</a>
-    <a href="https://linkedin.com/in/yamaceay" target="_blank" rel="noopener">in/ linkedin.com/in/yamaceay</a>
-    <a href="https://github.com/yamaceay" target="_blank" rel="noopener">&#9013; github.com/yamaceay</a>
-    <a href="https://medium.com/@yamaceay" target="_blank" rel="noopener">&#9998; medium.com/@yamaceay</a>
+    <a href="mailto:{{ s.cv.contact.email }}">&#9993; {{ s.cv.contact.email }}</a>
+    <span>&#128205; {{ s.cv.contact.location }}</span>
+    <a href="{{ s.cv.contact.website.url }}" target="_blank" rel="noopener">&#127760; {{ s.cv.contact.website.label }}</a>
+    <a href="{{ s.socials.linkedin.url }}" target="_blank" rel="noopener">in/ {{ s.socials.linkedin.url | remove: "https://" }}</a>
+    <a href="{{ s.socials.github.url }}" target="_blank" rel="noopener">&#9013; {{ s.socials.github.url | remove: "https://" }}</a>
+    <a href="{{ s.socials.medium.url }}" target="_blank" rel="noopener">&#9998; {{ s.socials.medium.url | remove: "https://" }}</a>
   </div>
 
   <div class="cv-grid">
@@ -280,138 +284,61 @@
       <div class="cv-section">
         <div class="cv-section-label">Working Experience</div>
 
-        <div class="entry">
+        {% for item in s.experience.items %}
+        {% assign pp = item.period | split: "&nbsp;·&nbsp;" %}
+        <div class="entry{% if item.dot != "" %} {{ item.dot }}{% endif %}">
           <div class="entry-top">
-            <div class="entry-role">Developer (Associate)</div>
-            <div class="entry-period">09/2026 &ndash;</div>
+            <div class="entry-role">{{ item.role }}</div>
+            <div class="entry-period">{{ pp[0] | strip }}</div>
           </div>
           <div class="entry-place-row">
-            <img src="sap_logo.jpeg" alt="SAP" class="entry-logo" />
-            <div class="entry-place">AI Core, SAP Business AI <span class="loc">&middot; Potsdam, Germany</span></div>
+            <img src="{{ item.cv.logo }}" alt="{{ item.place }}" class="entry-logo" />
+            <div class="entry-place">{{ item.place }} <span class="loc">&middot; {{ pp[1] | strip }}</span></div>
           </div>
-          <div class="entry-desc">Official AI Core Python SDK team for SAP Business AI.</div>
-          <div class="entry-contact">Contact: Sebastian Pfahl &middot; <a href="mailto:sebastian.pfahl@sap.com">sebastian.pfahl@sap.com</a></div>
-        </div>
-
-        <div class="entry green">
-          <div class="entry-top">
-            <div class="entry-role">Working Student Software Developer</div>
-            <div class="entry-period">10/2024 &ndash; 08/2026</div>
-          </div>
-          <div class="entry-place-row">
-            <img src="sap_logo.jpeg" alt="SAP" class="entry-logo" />
-            <div class="entry-place">AI Core, SAP Business AI <span class="loc">&middot; Potsdam, Germany</span></div>
-          </div>
-          <div class="entry-desc">A service within SAP BTP designed to manage the lifecycle of AI assets.</div>
+          <div class="entry-desc">{{ item.cv.desc | default: item.desc }}</div>
+          {% if item.cv.tags %}
           <div class="entry-tags">
-            <span class="tag tag-blue">Python</span>
-            <span class="tag tag-green">Go</span>
-            <span class="tag tag-purple">TypeScript</span>
-            <span class="tag tag-orange">Edge AI</span>
-            <span class="tag tag-blue">LLMs</span>
-            <span class="tag tag-green">AI Agents</span>
-            <span class="tag tag-purple">Big Data</span>
-            <span class="tag tag-orange">Kubernetes</span>
-            <span class="tag tag-blue">Crossplane</span>
+            {% for tag in item.cv.tags %}
+            {% assign ci = forloop.index0 | modulo: 4 %}
+            <span class="tag {{ tag_colors[ci] }}">{{ tag }}</span>
+            {% endfor %}
           </div>
-          <div class="entry-contact">Contact: Sander Wozniak &middot; <a href="mailto:sander.wozniak@sap.com">sander.wozniak@sap.com</a></div>
+          {% endif %}
+          {% if item.cv.contact %}
+          <div class="entry-contact">Contact: {{ item.cv.contact.name }} &middot; <a href="mailto:{{ item.cv.contact.email }}">{{ item.cv.contact.email }}</a></div>
+          {% endif %}
         </div>
-
-        <div class="entry purple">
-          <div class="entry-top">
-            <div class="entry-role">Working Student Cloud-Native Developer</div>
-            <div class="entry-period">02/2024 &ndash; 09/2024</div>
-          </div>
-          <div class="entry-place-row">
-            <img src="sap_logo.jpeg" alt="SAP" class="entry-logo" />
-            <div class="entry-place">SAP Master Data Integration <span class="loc">&middot; Potsdam, Germany</span></div>
-          </div>
-          <div class="entry-desc">A cloud service that synchronizes master data across SAP solutions.</div>
-          <div class="entry-tags">
-            <span class="tag tag-blue">LangChain</span>
-            <span class="tag tag-green">Docker</span>
-            <span class="tag tag-purple">Kubernetes</span>
-            <span class="tag tag-orange">ReasonML</span>
-            <span class="tag tag-blue">TypeScript</span>
-          </div>
-          <div class="entry-contact">Contact: Sander Wozniak &middot; <a href="mailto:sander.wozniak@sap.com">sander.wozniak@sap.com</a></div>
-        </div>
-
-        <div class="entry orange">
-          <div class="entry-top">
-            <div class="entry-role">Working Student Software Engineer / IT Consultant</div>
-            <div class="entry-period">06/2022 &ndash; 01/2024</div>
-          </div>
-          <div class="entry-place-row">
-            <img src="hiq_germany_logo.jpeg" alt="HiQ Germany" class="entry-logo" />
-            <div class="entry-place">HiQ Germany GmbH <span class="loc">&middot; Berlin, Germany</span></div>
-          </div>
-          <div class="entry-desc">&ldquo;We digitalize products, processes and organizations.&rdquo; Full-stack and backend development, DevOps.</div>
-          <div class="entry-tags">
-            <span class="tag tag-blue">Go</span>
-            <span class="tag tag-green">Python</span>
-            <span class="tag tag-purple">JavaScript</span>
-            <span class="tag tag-orange">Docker</span>
-            <span class="tag tag-blue">Kubernetes</span>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <!-- Education -->
       <div class="cv-section">
         <div class="cv-section-label">Education</div>
 
-        <div class="entry">
+        {% for item in s.education.items %}
+        {% assign pp = item.period | split: "&nbsp;·&nbsp;" %}
+        <div class="entry{% if item.dot != "" %} {{ item.dot }}{% endif %}">
           <div class="entry-top">
-            <div class="entry-role">Computer Science, M.Sc.</div>
-            <div class="entry-period">04/2024 &ndash; 08/2026</div>
+            <div class="entry-role">{{ item.role }}</div>
+            <div class="entry-period">{{ pp[0] | strip }}</div>
           </div>
           <div class="entry-place-row">
-            <img src="tuberlin_logo.jpeg" alt="TU Berlin" class="entry-logo" />
-            <div class="entry-place">Technische Universität Berlin <span class="loc">&middot; Berlin, Germany</span></div>
+            <img src="{{ item.cv.logo }}" alt="{{ item.cv.institution }}" class="entry-logo" />
+            <div class="entry-place">{{ item.cv.institution }} <span class="loc">&middot; {{ item.cv.location }}</span></div>
           </div>
-          <div class="entry-desc">Thesis conducted in partnership with <strong>DFKI</strong> (Deutsches Forschungszentrum für Künstliche Intelligenz).</div>
-          <div class="entry-desc">Science of Intelligence Master Track &middot; Berlin University Alliance. Specialization in ML, neuroscience, and privacy-preserving AI.</div>
-          <div class="entry-desc"><strong>Thesis:</strong> Towards Efficient Text Anonymization &mdash; Differential Privacy and Re-Identification Risk-based Explainability.</div>
+          {% for line in item.cv.desc_lines %}
+          <div class="entry-desc">{{ line }}</div>
+          {% endfor %}
+          {% if item.cv.tags %}
           <div class="entry-tags">
-            <span class="tag tag-blue">Deep Learning</span>
-            <span class="tag tag-green">Machine Intelligence I &amp; II</span>
-            <span class="tag tag-purple">Automatic Image Analysis</span>
-            <span class="tag tag-orange">Causal Inference</span>
-            <span class="tag tag-blue">NLP in Humans &amp; Machines</span>
+            {% for tag in item.cv.tags %}
+            {% assign ci = forloop.index0 | modulo: 4 %}
+            <span class="tag {{ tag_colors[ci] }}">{{ tag }}</span>
+            {% endfor %}
           </div>
+          {% endif %}
         </div>
-
-        <div class="entry green">
-          <div class="entry-top">
-            <div class="entry-role">Computer Science, B.Sc.</div>
-            <div class="entry-period">11/2020 &ndash; 07/2024</div>
-          </div>
-          <div class="entry-place-row">
-            <img src="tuberlin_logo.jpeg" alt="TU Berlin" class="entry-logo" />
-            <div class="entry-place">Technische Universität Berlin <span class="loc">&middot; Berlin, Germany</span></div>
-          </div>
-          <div class="entry-desc">Theory-intensive curriculum with AI/ML electives. Final grade: <strong>2.0</strong> (1.9 preliminary).</div>
-          <div class="entry-desc"><strong>Thesis (1.3):</strong> AlphaZero gegen MCTS &mdash; Eine Studie zur KI-basierten Spielstrategie in Gomoku.</div>
-          <div class="entry-tags">
-            <span class="tag tag-blue">Analysis &amp; Linear Algebra</span>
-            <span class="tag tag-green">Stochastics</span>
-            <span class="tag tag-purple">Algorithms &amp; Data Structures</span>
-            <span class="tag tag-orange">Discrete Structures</span>
-          </div>
-        </div>
-
-        <div class="entry purple">
-          <div class="entry-top">
-            <div class="entry-role">High School (Abitur)</div>
-            <div class="entry-period">09/2015 &ndash; 06/2020</div>
-          </div>
-          <div class="entry-place-row">
-            <img src="istanbul_erkek_lisesi_logo.jpeg" alt="Istanbul Erkek Lisesi" class="entry-logo" />
-            <div class="entry-place">Istanbul Erkek Lisesi <span class="loc">&middot; Istanbul, Türkiye</span></div>
-          </div>
-          <div class="entry-desc">Gymnasium with full German-language curriculum. Graduated with German university entrance qualification.</div>
-        </div>
+        {% endfor %}
       </div>
 
     </div><!-- /main column -->
@@ -424,12 +351,12 @@
         <div class="cv-section-label">Skills</div>
         <div class="side-card">
           <div class="skill-pill-group">
-            <span class="tag tag-blue">Scientific Writing &amp; Presentation</span>
-            <span class="tag tag-green">Agentic Workflows</span>
-            <span class="tag tag-purple">Machine Learning</span>
-            <span class="tag tag-orange">Data Science</span>
-            <span class="tag tag-blue">Data Visualization</span>
-            <span class="tag tag-green">Cloud-Native Development</span>
+            {% for group in s.skills.groups %}
+            {% for item in group.items %}
+            {% assign ci = forloop.index0 | modulo: 4 %}
+            <span class="tag {{ tag_colors[ci] }}">{{ item }}</span>
+            {% endfor %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -438,10 +365,9 @@
       <div class="cv-section">
         <div class="cv-section-label">Languages</div>
         <div class="side-card">
-          <div class="lang-row"><span class="lang-name">German</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:80%"></div></div><span class="lang-pct">80%</span></div>
-          <div class="lang-row"><span class="lang-name">English</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:80%"></div></div><span class="lang-pct">80%</span></div>
-          <div class="lang-row"><span class="lang-name">Turkish</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:100%"></div></div><span class="lang-pct">100%</span></div>
-          <div class="lang-row"><span class="lang-name">Spanish</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:40%"></div></div><span class="lang-pct">40%</span></div>
+          {% for lang in s.cv.languages %}
+          <div class="lang-row"><span class="lang-name">{{ lang.name }}</span><div class="lang-bar-wrap"><div class="lang-bar" style="width:{{ lang.pct }}%"></div></div><span class="lang-pct">{{ lang.pct }}%</span></div>
+          {% endfor %}
         </div>
       </div>
 
@@ -449,21 +375,13 @@
       <div class="cv-section">
         <div class="cv-section-label">Certification &amp; Courses</div>
         <div class="side-card">
+          {% for cert in s.cv.certifications %}
           <div class="cert-item">
-            <div class="cert-name">Data or Specimens Only Research</div>
-            <div class="cert-meta">05/2025 &ndash; 05/2028</div>
-            <a class="cert-link" href="https://www.citiprogram.org/verify/?we6b33b1a-42ec-4fd2-976e-d4cfdbf4d203-69398310" target="_blank" rel="noopener">Verify credential &rarr;</a>
+            <div class="cert-name">{{ cert.name }}</div>
+            <div class="cert-meta">{{ cert.meta }}</div>
+            <a class="cert-link" href="{{ cert.link.url }}" target="_blank" rel="noopener">{{ cert.link.label }}</a>
           </div>
-          <div class="cert-item">
-            <div class="cert-name">Winter School &ldquo;Ethics of Neuroscience and AI&rdquo;</div>
-            <div class="cert-meta">04/2025</div>
-            <a class="cert-link" href="http://bit.ly/4tBSn3Q" target="_blank" rel="noopener">View &rarr;</a>
-          </div>
-          <div class="cert-item">
-            <div class="cert-name">IBM Data Science</div>
-            <div class="cert-meta">10/2021</div>
-            <a class="cert-link" href="https://credentials.edx.org/credentials/bc8b67e5b25c4ab6a282a074e87b73a8/" target="_blank" rel="noopener">Verify credential &rarr;</a>
-          </div>
+          {% endfor %}
         </div>
       </div>
 
@@ -471,14 +389,12 @@
       <div class="cv-section">
         <div class="cv-section-label">Other Achievements</div>
         <div class="side-card">
+          {% for a in s.cv.achievements %}
           <div class="achieve-item">
-            <div class="achieve-name">Kaggle Datasets and Notebooks Expert</div>
-            <a class="achieve-link" href="https://www.kaggle.com/yamaerenay" target="_blank" rel="noopener">kaggle.com/yamaerenay &rarr;</a>
+            <div class="achieve-name">{{ a.name }}</div>
+            <a class="achieve-link" href="{{ a.link.url }}" target="_blank" rel="noopener">{{ a.link.label }}</a>
           </div>
-          <div class="achieve-item">
-            <div class="achieve-name">Medium Writer (50+ articles)</div>
-            <a class="achieve-link" href="https://medium.com/@yamaceay" target="_blank" rel="noopener">medium.com/@yamaceay &rarr;</a>
-          </div>
+          {% endfor %}
         </div>
       </div>
 
@@ -487,10 +403,9 @@
         <div class="cv-section-label">Interests</div>
         <div class="side-card">
           <div class="interest-list">
-            <span class="interest-pill">&#127928; Guitar</span>
-            <span class="interest-pill">&#128187; Open Source</span>
-            <span class="interest-pill">&#127939; Sports</span>
-            <span class="interest-pill">&#128274; Cybersecurity</span>
+            {% for interest in s.cv.interests %}
+            <span class="interest-pill">{{ interest.emoji }} {{ interest.label }}</span>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -502,7 +417,7 @@
 </div><!-- /page -->
 
 <footer class="cv-footer">
-  <span>Yamaç Eren Ay &middot; Berlin, 2026 &middot; <a href="index.html">yamaceay.github.io</a></span>
+  <span>{{ s.cv.footer }} &middot; <a href="index.html">{{ s.meta.brand }}</a></span>
 </footer>
 
 </body>

@@ -1,0 +1,74 @@
+---
+---
+{% assign s = site.data.site %}
+{% assign tag_colors = "tag-blue,tag-green,tag-purple,tag-orange" | split: "," %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} · {{ s.meta.brand }}</title>
+  <meta name="description" content="{{ page.excerpt | default: s.meta.description }}" />
+  {% if page.original_url %}<link rel="canonical" href="{{ page.original_url }}" />{% endif %}
+  {% include blog-style.html %}
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">{{ s.meta.brand | replace: '.', '<span style="color:var(--muted)">.</span>' }}</a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="{{ s.hero.cv_href }}">CV</a></li>
+  </ul>
+</nav>
+
+<section>
+  <div class="container" style="max-width:700px;">
+    <a href="/blog/" class="back-link">&larr; All posts</a>
+
+    {% if page.tags %}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+      {% assign ci = forloop.index0 | modulo: 4 %}
+      <span class="tag {{ tag_colors[ci] }}">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      {{ page.date | date: "%B %-d, %Y" }}
+      {% if page.original_url %}&nbsp;&middot;&nbsp;<a href="{{ page.original_url }}" target="_blank" rel="noopener">Originally published on Medium &#8599;</a>{% endif %}
+    </div>
+
+    <div class="article-content">
+      {{ content }}
+    </div>
+
+    <div class="giscus-wrap">
+      <script src="https://giscus.app/client.js"
+        data-repo="yamaceay/yamaceay.github.io"
+        data-repo-id="R_kgDOHE7aeg"
+        data-category="Comments"
+        data-category-id="DIC_kwDOHE7aes4DJnRQ"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>{{ s.footer_text }}</span>
+</footer>
+
+</body>
+</html>

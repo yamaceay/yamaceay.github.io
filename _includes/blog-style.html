@@ -1,0 +1,107 @@
+<style>
+  /* ── Reset & Base (shared with index.html) ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:       #0d1117;
+    --bg2:      #161b22;
+    --bg3:      #21262d;
+    --border:   #30363d;
+    --text:     #e6edf3;
+    --muted:    #8b949e;
+    --accent:   #58a6ff;
+    --accent2:  #3fb950;
+    --accent3:  #d2a8ff;
+    --accent4:  #ffa657;
+    --shadow:   0 8px 32px rgba(0,0,0,.45);
+    --radius:   12px;
+    --font:     'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono:     'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; }
+  a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+  a:hover { opacity: .75; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .85rem 2rem;
+    background: rgba(13,17,23,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--mono); font-size: .95rem; color: var(--accent); font-weight: 600; letter-spacing: .03em; }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+  .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 700px) { .nav-links { gap: 1rem; } }
+
+  /* ── Section layout ── */
+  section { padding: 7.5rem 1.5rem 5rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .section-label { font-family: var(--mono); font-size: .78rem; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .6rem; }
+  .section-title { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 2.5rem; }
+  .section-title span { color: var(--muted); font-weight: 400; }
+
+  /* ── Tag pills (shared) ── */
+  .tag { font-size: .73rem; font-family: var(--mono); padding: .2rem .65rem; border-radius: 99px; border: 1px solid; font-weight: 500; }
+  .tag-blue  { color: var(--accent);  border-color: rgba(88,166,255,.35);  background: rgba(88,166,255,.08); }
+  .tag-green { color: var(--accent2); border-color: rgba(63,185,80,.35);   background: rgba(63,185,80,.08); }
+  .tag-purple{ color: var(--accent3); border-color: rgba(210,168,255,.35); background: rgba(210,168,255,.08); }
+  .tag-orange{ color: var(--accent4); border-color: rgba(255,166,87,.35);  background: rgba(255,166,87,.08); }
+
+  /* ── Reveal animation (shared with index.html) ── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── Blog grid/cards (shared with index.html #blog) ── */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  .blog-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.5rem; transition: border-color .2s, transform .2s; }
+  .blog-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .blog-tag { font-family: var(--mono); font-size: .72rem; color: var(--accent2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+  .blog-title { display: block; font-size: .93rem; font-weight: 600; margin-bottom: .5rem; color: var(--text); }
+  .blog-title:hover { color: var(--accent); opacity: 1; }
+  .blog-excerpt { font-size: .82rem; color: var(--muted); }
+
+  /* ── Single post ── */
+  .back-link { display: inline-block; font-size: .85rem; color: var(--muted); margin-bottom: 1.6rem; }
+  .back-link:hover { color: var(--text); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+  .post-title { font-size: clamp(1.7rem, 4.5vw, 2.4rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.25; margin-bottom: .8rem; }
+  .post-meta { font-family: var(--mono); font-size: .8rem; color: var(--muted); margin-bottom: 2.5rem; }
+
+  /* ── Article prose (rendered Medium HTML) ── */
+  .article-content { font-size: 1rem; color: var(--text); }
+  .article-content p { margin-bottom: 1.2rem; color: var(--text); }
+  .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+    margin: 2.2rem 0 1rem; font-weight: 700; letter-spacing: -.01em; color: var(--text);
+  }
+  .article-content a { text-decoration: underline; text-underline-offset: 2px; }
+  .article-content strong { color: var(--text); }
+  .article-content em { color: var(--muted); }
+  .article-content ul, .article-content ol { margin: 0 0 1.2rem 1.4rem; color: var(--text); }
+  .article-content li { margin-bottom: .4rem; }
+  .article-content blockquote {
+    border-left: 3px solid var(--accent); padding-left: 1.2rem; margin: 1.6rem 0;
+    color: var(--muted); font-style: italic;
+  }
+  .article-content figure { margin: 1.8rem 0; }
+  .article-content img { max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: var(--radius); }
+  .article-content figcaption { font-size: .8rem; color: var(--muted); text-align: center; margin-top: .6rem; }
+  .article-content pre {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1rem 1.2rem; overflow-x: auto; margin-bottom: 1.2rem; font-family: var(--mono); font-size: .85rem;
+  }
+  .article-content code { font-family: var(--mono); background: var(--bg2); padding: .1rem .4rem; border-radius: 4px; font-size: .9em; }
+  .article-content pre code { background: none; padding: 0; }
+  .article-content hr { border: none; border-top: 1px solid var(--border); margin: 2.4rem 0; }
+
+  .giscus-wrap { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+</style>

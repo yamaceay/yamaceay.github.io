@@ -1,0 +1,95 @@
+---
+permalink: /blog/
+---
+{% assign s = site.data.site %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog · {{ s.meta.brand }}</title>
+  <meta name="description" content="All posts, mirrored from Medium." />
+  {% include blog-style.html %}
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">{{ s.meta.brand | replace: '.', '<span style="color:var(--muted)">.</span>' }}</a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="{{ s.hero.cv_href }}">CV</a></li>
+  </ul>
+</nav>
+
+<section>
+  <div class="container">
+    <p class="section-label">{{ s.blog.label }}</p>
+    <h2 class="section-title">All <span>Posts</span></h2>
+
+    {% assign posts = site.posts | sort: "date" | reverse %}
+    {% capture posts_json %}[{% for post in posts %}{"title": {{ post.title | jsonify }}, "url": {{ post.url | jsonify }}, "date": {{ post.date | date: "%b %-d, %Y" | jsonify }}, "excerpt": {{ post.excerpt | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endcapture %}
+
+    <div class="blog-grid" id="blogGrid"></div>
+
+    <div id="blogSentinel" style="height:1px;"></div>
+    <p id="blogEmpty" style="display:none; color:var(--muted); font-size:.9rem;">No posts synced yet — check back soon, or see the full archive on <a href="https://medium.com/@yamaceay" target="_blank" rel="noopener">Medium</a> in the meantime.</p>
+  </div>
+</section>
+
+<footer>
+  <span>{{ s.footer_text }}</span>
+</footer>
+
+<script>
+  // All post metadata is tiny (title/url/date/excerpt only, no article
+  // bodies) so embedding it is cheap even at hundreds of posts — but we
+  // still only render a handful of cards into the DOM at a time, loading
+  // more as the visitor scrolls near the bottom, instead of painting the
+  // whole archive on first load.
+  const posts = {{ posts_json }};
+  const PAGE_SIZE = 6;
+  let rendered = 0;
+
+  const grid = document.getElementById('blogGrid');
+  const sentinel = document.getElementById('blogSentinel');
+  const emptyMsg = document.getElementById('blogEmpty');
+
+  function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  function renderNextPage() {
+    const next = posts.slice(rendered, rendered + PAGE_SIZE);
+    next.forEach((post, i) => {
+      const card = document.createElement('div');
+      card.className = 'blog-card reveal';
+      card.style.transitionDelay = (i * 60) + 'ms';
+      card.innerHTML = `
+        <div class="blog-tag">${esc(post.date)}</div>
+        <a href="${esc(post.url)}" class="blog-title">${esc(post.title)}</a>
+        <div class="blog-excerpt">${esc(post.excerpt)}</div>
+      `;
+      grid.appendChild(card);
+      requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('visible')));
+    });
+    rendered += next.length;
+    if (rendered >= posts.length) io.unobserve(sentinel);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) renderNextPage(); });
+  }, { rootMargin: '200px' });
+
+  if (posts.length === 0) {
+    emptyMsg.style.display = 'block';
+  } else {
+    renderNextPage();
+    io.observe(sentinel);
+  }
+</script>
+
+</body>
+</html>
