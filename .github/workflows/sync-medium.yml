@@ -18,6 +18,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install dependencies
+        run: pip install pyyaml
+
       - name: Sync posts from Medium RSS
         run: python3 scripts/sync_medium.py
 

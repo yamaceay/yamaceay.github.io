@@ -84,9 +84,9 @@ experience:
   items:
     - dot: "blue"
       period: "10/2026 - present &nbsp;·&nbsp; Potsdam, Germany"
-      role: "Developer Associate"
-      place: "SAP AI Core, SAP Business AI"
-      desc: "SAP AI Python SDK development, with integrations for LLM gateways and orchestration services."
+      role: "Application Engineering Associate"
+      place: "SAP AI Foundations, SAP Business AI"
+      desc: "Development and maintenance of SAP Cloud SDK for AI: the official Software Development Kit (SDK) for SAP AI Core, SAP Generative AI Hub, and Orchestration Service."
       cv:
         logo: /assets/images/sap_logo.jpeg
         desc: "Official AI Core Python SDK team for SAP Business AI."
@@ -292,6 +292,20 @@ blog:
   label: "// writing"
   title_main: "From the"
   title_accent: "Blog"
+  # Curate which Medium posts show up (homepage teaser + /blog/ archive).
+  # Paste a Medium URL (full or partial — just enough to uniquely match
+  # it, e.g. the slug) one per line. Applies going forward (skips
+  # mirroring) AND retroactively (hides an already-mirrored post without
+  # deleting its file).
+  #
+  # Use ONE of these two, not both — if `include` has any entries, it
+  # wins outright and `exclude` is ignored:
+  #   - exclude: blacklist — show everything EXCEPT these.
+  #   - include: whitelist — show ONLY these (and nothing else, even
+  #     future posts, until you add them here too).
+  exclude:
+    - "cheers-you-are-at-my-medium-profile"
+  include: []
   more:
     tag: "All Posts"
     desc: "Mirrored daily from Medium — theory-driven perspectives on AI, algorithms, and mathematics, written to clarify complexity, not hide it."

@@ -28,7 +28,10 @@ permalink: /blog/
     <h2 class="section-title">All <span>Posts</span></h2>
 
     {% assign posts = site.posts | sort: "date" | reverse %}
-    {% capture posts_json %}[{% for post in posts %}{"title": {{ post.title | jsonify }}, "url": {{ post.url | jsonify }}, "date": {{ post.date | date: "%b %-d, %Y" | jsonify }}, "excerpt": {{ post.excerpt | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endcapture %}
+    {% assign is_first = true %}
+    {% assign use_include = false %}
+    {% if s.blog.include and s.blog.include.size > 0 %}{% assign use_include = true %}{% endif %}
+    {% capture posts_json %}[{% for post in posts %}{% assign visible = true %}{% if use_include %}{% assign visible = false %}{% for inc in s.blog.include %}{% if post.original_url contains inc %}{% assign visible = true %}{% break %}{% endif %}{% endfor %}{% else %}{% for ex in s.blog.exclude %}{% if post.original_url contains ex %}{% assign visible = false %}{% break %}{% endif %}{% endfor %}{% endif %}{% if visible %}{% unless is_first %},{% endunless %}{% assign is_first = false %}{"title": {{ post.title | jsonify }}, "url": {{ post.url | jsonify }}, "date": {{ post.date | date: "%b %-d, %Y" | jsonify }}, "excerpt": {{ post.excerpt | jsonify }}}{% endif %}{% endfor %}]{% endcapture %}
 
     <div class="blog-grid" id="blogGrid"></div>
 

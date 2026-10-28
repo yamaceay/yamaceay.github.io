@@ -11,10 +11,27 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 
+import yaml
+
 FEED_URL = "https://medium.com/feed/@yamaceay"
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 POSTS_DIR = os.path.join(ROOT, "_posts")
+SITE_DATA = os.path.join(ROOT, "_data", "site.yml")
 CONTENT_NS = "http://purl.org/rss/1.0/modules/content/"
+
+
+def curation_lists():
+    with open(SITE_DATA, encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    blog = data.get("blog") or {}
+    return blog.get("include") or [], blog.get("exclude") or []
+
+
+def is_visible(link, include_patterns, exclude_patterns):
+    # `include` wins outright when non-empty: whitelist mode.
+    if include_patterns:
+        return any(p and p in link for p in include_patterns)
+    return not any(p and p in link for p in exclude_patterns)
 
 
 def slugify(text):
@@ -60,12 +77,18 @@ def escape_yaml(text):
 def main():
     os.makedirs(POSTS_DIR, exist_ok=True)
     seen = existing_original_urls()
+    include, exclude = curation_lists()
     root = ET.fromstring(fetch_feed())
     created = 0
+    skipped = 0
 
     for item in root.findall("./channel/item"):
         link = (item.findtext("link") or "").split("?")[0]
         if not link or link in seen:
+            continue
+        if not is_visible(link, include, exclude):
+            skipped += 1
+            print(f"Skipped (curated out): {link}")
             continue
 
         title = (item.findtext("title") or "Untitled").strip()
@@ -116,7 +139,7 @@ def main():
         created += 1
         print(f"Created {path}")
 
-    print(f"Done. {created} new post(s).")
+    print(f"Done. {created} new post(s), {skipped} curated out.")
 
 
 if __name__ == "__main__":
