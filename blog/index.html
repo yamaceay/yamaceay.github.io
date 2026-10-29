@@ -51,6 +51,7 @@ permalink: /blog/
   // more as the visitor scrolls near the bottom, instead of painting the
   // whole archive on first load.
   const posts = {{ posts_json }};
+  const mediumUrl = {{ s.socials.medium.url | jsonify }};
   const PAGE_SIZE = 6;
   let rendered = 0;
 
@@ -79,7 +80,19 @@ permalink: /blog/
       requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('visible')));
     });
     rendered += next.length;
-    if (rendered >= posts.length) io.unobserve(sentinel);
+    if (rendered >= posts.length) {
+      io.unobserve(sentinel);
+      const moreCard = document.createElement('div');
+      moreCard.className = 'blog-card reveal';
+      moreCard.style.cssText = 'display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:.6rem;';
+      moreCard.innerHTML = `
+        <div class="blog-tag">Medium</div>
+        <div style="color:var(--muted); font-size:.85rem;">Every post, including anything not yet mirrored here.</div>
+        <a href="${esc(mediumUrl)}" target="_blank" rel="noopener" style="font-size:.85rem; color:var(--accent); font-weight:500;">See my full profile on Medium →</a>
+      `;
+      grid.appendChild(moreCard);
+      requestAnimationFrame(() => requestAnimationFrame(() => moreCard.classList.add('visible')));
+    }
   }
 
   const io = new IntersectionObserver((entries) => {
