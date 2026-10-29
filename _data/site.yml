@@ -322,8 +322,7 @@ blog:
   featured:
     - "my-journey-to-an-orange-belt-in-cybersecurity"
     - "weirdest-explanation-of-memory"
-    # "Transfer Learning For Dummies" isn't mirrored yet (too old for the
-    # RSS window) — say the word to force-mirror it and this'll pick it up.
+    - "transfer-learning-for-dummies"
   more:
     tag: "All Posts"
     desc: "Mirrored daily from Medium — theory-driven perspectives on AI, algorithms, and mathematics, written to clarify complexity, not hide it."
