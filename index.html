@@ -580,31 +580,50 @@
     <h2 class="section-title reveal">{{ s.blog.title_main }} <span>{{ s.blog.title_accent }}</span></h2>
     <div class="blog-grid">
       {% assign all_posts = site.posts | sort: "date" | reverse %}
+      {% assign use_featured = false %}
+      {% if s.blog.featured and s.blog.featured.size > 0 %}{% assign use_featured = true %}{% endif %}
       {% assign use_include = false %}
       {% if s.blog.include and s.blog.include.size > 0 %}{% assign use_include = true %}{% endif %}
       {% assign shown = 0 %}
-      {% for post in all_posts %}
-        {% if shown >= 3 %}{% break %}{% endif %}
-        {% assign visible = true %}
-        {% if use_include %}
-          {% assign visible = false %}
-          {% for inc in s.blog.include %}
-            {% if post.original_url contains inc %}{% assign visible = true %}{% break %}{% endif %}
-          {% endfor %}
-        {% else %}
-          {% for ex in s.blog.exclude %}
-            {% if post.original_url contains ex %}{% assign visible = false %}{% break %}{% endif %}
-          {% endfor %}
-        {% endif %}
-        {% if visible %}
+      {% if use_featured %}
+        {% for slug in s.blog.featured %}
+          {% if shown >= 3 %}{% break %}{% endif %}
+          {% for post in all_posts %}
+            {% if post.original_url contains slug %}
       <div class="blog-card reveal">
         <div class="blog-tag">{{ post.date | date: "%b %Y" }}</div>
         <a href="{{ post.url }}" class="blog-title">{{ post.title }}</a>
         <div class="blog-excerpt">{{ post.excerpt }}</div>
       </div>
-        {% assign shown = shown | plus: 1 %}
-        {% endif %}
-      {% endfor %}
+              {% assign shown = shown | plus: 1 %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        {% for post in all_posts %}
+          {% if shown >= 3 %}{% break %}{% endif %}
+          {% assign visible = true %}
+          {% if use_include %}
+            {% assign visible = false %}
+            {% for inc in s.blog.include %}
+              {% if post.original_url contains inc %}{% assign visible = true %}{% break %}{% endif %}
+            {% endfor %}
+          {% else %}
+            {% for ex in s.blog.exclude %}
+              {% if post.original_url contains ex %}{% assign visible = false %}{% break %}{% endif %}
+            {% endfor %}
+          {% endif %}
+          {% if visible %}
+      <div class="blog-card reveal">
+        <div class="blog-tag">{{ post.date | date: "%b %Y" }}</div>
+        <a href="{{ post.url }}" class="blog-title">{{ post.title }}</a>
+        <div class="blog-excerpt">{{ post.excerpt }}</div>
+      </div>
+            {% assign shown = shown | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
       <div class="blog-card reveal" style="display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:.6rem;">
         <div class="blog-tag">{{ s.blog.more.tag }}</div>
         <div style="color:var(--muted); font-size:.85rem;">{{ s.blog.more.desc }}</div>

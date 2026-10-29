@@ -304,8 +304,26 @@ blog:
   #   - include: whitelist — show ONLY these (and nothing else, even
   #     future posts, until you add them here too).
   exclude:
-    - "cheers-you-are-at-my-medium-profile"
+    - "im-ignorant-and-i-know-it"
+    - "reflag-flags-redefined-c"
+    - "nqdm-modern-progress-bar"
+    - "ways-to-deal-with-difficult-people-in-projects"
   include: []
+
+  # Hand-pick exactly which posts appear in the homepage teaser (the 2-3
+  # cards above "View all posts"), in this exact order — independent of
+  # include/exclude above, which only govern the full /blog/ archive.
+  # Leave empty to just show the latest posts automatically.
+  # NOTE: only matches posts already mirrored into _posts/ — the sync
+  # only pulls Medium's latest ~10, so an older article (like most of
+  # the ones in your full Medium story list) won't be pickable here
+  # until it's mirrored. Say the word if you want a specific older post
+  # force-mirrored.
+  featured:
+    - "my-journey-to-an-orange-belt-in-cybersecurity"
+    - "weirdest-explanation-of-memory"
+    # "Transfer Learning For Dummies" isn't mirrored yet (too old for the
+    # RSS window) — say the word to force-mirror it and this'll pick it up.
   more:
     tag: "All Posts"
     desc: "Mirrored daily from Medium — theory-driven perspectives on AI, algorithms, and mathematics, written to clarify complexity, not hide it."
