@@ -308,6 +308,7 @@ blog:
     - "reflag-flags-redefined-c"
     - "nqdm-modern-progress-bar"
     - "ways-to-deal-with-difficult-people-in-projects"
+    - "good-point-agreed-cool-and-hot-at-the-same-time" # a reply-comment on someone else's post, not an article
   include: []
 
   # Hand-pick exactly which posts appear in the homepage teaser (the 2-3
