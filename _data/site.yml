@@ -167,7 +167,7 @@ education:
 research:
   label: "// research"
   title_main: "Research"
-  title_accent: "& Security"
+  title_accent: "& Development"
   items:
     - title: "Towards Efficient Text Anonymization Using Differential Privacy and Re-identification Risk-based Explainability"
       meta: "MSc Thesis &nbsp;·&nbsp; TU Berlin, Q&amp;U Lab &nbsp;·&nbsp; 2026"
