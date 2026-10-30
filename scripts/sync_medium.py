@@ -129,7 +129,9 @@ def main():
             f'excerpt: "{escape_yaml(excerpt)}"',
             "---",
             "",
-            content,
+            "{% raw %}",  # Medium content can contain literal {{ }} (e.g. set notation)
+            content,      # which Liquid would otherwise try to parse as template syntax
+            "{% endraw %}",
             "",
         ])
 

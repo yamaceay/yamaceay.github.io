@@ -7,6 +7,7 @@ tags: []
 excerpt: "This article requires you to have a basic understanding of ReasonML, a functional programming language which I partly covered in one of my previous articles. How to Learn a Coding Language (Fast) For "
 ---
 
+{% raw %}
 <p>This article requires you to have a basic understanding of ReasonML, a functional programming language which I partly covered in one of my previous articles.</p><p><a href="https://yamaceay.medium.com/how-to-learn-a-coding-language-fast-ad7a99eaf375">How to Learn a Coding Language (Fast)</a></p><p>For quick navigation, here are the other articles in the same series:</p><p><a href="https://yamaceay.medium.com/learn-with-me-reasonml-part-1-83b48d9ef694">Learn With Me: ReasonML, Part 1</a></p><p><a href="https://yamaceay.medium.com/learn-with-me-reasonml-part-2-6f704e0ded0b">Learn With Me: ReasonML, Part 2</a></p><h4>Handling Primitive Types</h4><figure><img alt="" src="https://cdn-images-1.medium.com/max/1400/1*bWlPjyo3nKKetFXqt3CCbg.png" /><figcaption>Source: Data types, pt. 1 by M. Lim, Medium</figcaption></figure><p>Mutability in ReasonML is a feature primarily used with records. Here’s how you define a mutable type that can hold any value:</p><pre><code>db.re
 
 /* HANDLING PRIMITIVE TYPES */
@@ -22889,3 +22890,4 @@ module StringMap = Map.Make({
   let compare = compare;
 });
 // module StringMap: { ... };</code></pre><p>Wrapping up our deep dive into handling a database use case with ReasonML, it’s clear we’ve covered significant ground. From extracting raw data to applying a generic statistics library, this journey showcased ReasonML’s capability to tackle complex data challenges head-on.</p><p>I hope you enjoyed reading my article series. Stay tuned!</p>
+{% endraw %}
