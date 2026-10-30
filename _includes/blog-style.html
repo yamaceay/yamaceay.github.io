@@ -1,3 +1,5 @@
+<link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#0d1117" />
 <style>
   /* ── Reset & Base (shared with index.html) ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,6 +23,13 @@
   body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; }
   a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
   a:hover { opacity: .75; }
+  ::selection { background: rgba(88,166,255,.3); color: var(--text); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -33,11 +42,25 @@
     background: rgba(13,17,23,.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    transition: background .3s, box-shadow .3s;
+  }
+  nav.scrolled { background: rgba(13,17,23,.95); box-shadow: 0 4px 24px rgba(0,0,0,.35); }
+  .nav-progress {
+    position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transform: scaleX(0); transform-origin: left;
   }
   .nav-logo { font-family: var(--mono); font-size: .95rem; color: var(--accent); font-weight: 600; letter-spacing: .03em; }
   .nav-links { display: flex; gap: 1.6rem; list-style: none; }
-  .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: var(--text); }
+  .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 500; transition: color .2s; position: relative; }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
+    background: var(--accent); border-radius: 2px;
+    transform: scaleX(0); transition: transform .25s ease;
+  }
+  .nav-links a:hover { color: var(--text); opacity: 1; }
+  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--text); }
   @media (max-width: 700px) { .nav-links { gap: 1rem; } }
 
   /* ── Section layout ── */
@@ -46,6 +69,10 @@
   .section-label { font-family: var(--mono); font-size: .78rem; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .6rem; }
   .section-title { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 2.5rem; }
   .section-title span { color: var(--muted); font-weight: 400; }
+  .section-title::after {
+    content: ''; display: block; width: 42px; height: 3px; margin-top: .7rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent3)); border-radius: 3px;
+  }
 
   /* ── Tag pills (shared) ── */
   .tag { font-size: .73rem; font-family: var(--mono); padding: .2rem .65rem; border-radius: 99px; border: 1px solid; font-weight: 500; }
@@ -60,8 +87,8 @@
 
   /* ── Blog grid/cards (shared with index.html #blog) ── */
   .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
-  .blog-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.5rem; transition: border-color .2s, transform .2s; }
-  .blog-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .blog-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.5rem; transition: border-color .2s, transform .2s, box-shadow .2s; }
+  .blog-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow); }
   .blog-tag { font-family: var(--mono); font-size: .72rem; color: var(--accent2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
   .blog-title { display: block; font-size: .93rem; font-weight: 600; margin-bottom: .5rem; color: var(--text); }
   .blog-title:hover { color: var(--accent); opacity: 1; }
@@ -105,3 +132,20 @@
   /* ── Footer ── */
   footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-family: var(--mono); font-size: .78rem; color: var(--muted); }
 </style>
+<script>
+  // Nav shadow once scrolled + top progress bar (reading progress on posts).
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    const bar = document.createElement('div');
+    bar.className = 'nav-progress';
+    nav.appendChild(bar);
+    function onScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  });
+</script>
